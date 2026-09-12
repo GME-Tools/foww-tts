@@ -5,6 +5,83 @@ local CATALOG_URL =
     local catalog = nil
 
 
+local function validateCatalog(data)
+
+    if type(data) ~= "table" then
+        return false, "Catalog root is not an object"
+    end
+
+    if data.schemaVersion ~= 1 then
+        return false,
+            "Unsupported schemaVersion: "
+            .. tostring(data.schemaVersion)
+    end
+
+    if type(data.products) ~= "table" then
+        return false, "Missing products array"
+    end
+
+    local ids = {}
+
+    for index, product in ipairs(data.products) do
+
+        if type(product.id) ~= "string"
+            or product.id == "" then
+
+            return false,
+                "Product #" .. tostring(index)
+                .. " has no valid id"
+        end
+
+        if ids[product.id] then
+            return false,
+                "Duplicate product id: "
+                .. product.id
+        end
+
+        ids[product.id] = true
+
+        if type(product.name) ~= "string"
+            or product.name == "" then
+
+            return false,
+                "Product " .. product.id
+                .. " has no name"
+        end
+
+        if type(product.box) ~= "table" then
+            return false,
+                "Product " .. product.id
+                .. " has no box definition"
+        end
+
+        if product.box.kind ~= "tile" then
+            return false,
+                "Product " .. product.id
+                .. " has unsupported box kind: "
+                .. tostring(product.box.kind)
+        end
+
+        if type(product.box.imageOpen) ~= "string"
+            or product.box.imageOpen == "" then
+
+            return false,
+                "Product " .. product.id
+                .. " has no imageOpen"
+        end
+
+        if type(product.box.imageClosed) ~= "string"
+            or product.box.imageClosed == "" then
+
+            return false,
+                "Product " .. product.id
+                .. " has no imageClosed"
+        end
+    end
+
+    return true, nil
+end
+
 
 function Registry.load(callback)
 
@@ -85,84 +162,6 @@ end
 
 function Registry.getCatalog()
     return catalog
-end
-
-
-local function validateCatalog(data)
-
-    if type(data) ~= "table" then
-        return false, "Catalog root is not an object"
-    end
-
-    if data.schemaVersion ~= 1 then
-        return false,
-            "Unsupported schemaVersion: "
-            .. tostring(data.schemaVersion)
-    end
-
-    if type(data.products) ~= "table" then
-        return false, "Missing products array"
-    end
-
-    local ids = {}
-
-    for index, product in ipairs(data.products) do
-
-        if type(product.id) ~= "string"
-            or product.id == "" then
-
-            return false,
-                "Product #" .. tostring(index)
-                .. " has no valid id"
-        end
-
-        if ids[product.id] then
-            return false,
-                "Duplicate product id: "
-                .. product.id
-        end
-
-        ids[product.id] = true
-
-        if type(product.name) ~= "string"
-            or product.name == "" then
-
-            return false,
-                "Product " .. product.id
-                .. " has no name"
-        end
-
-        if type(product.box) ~= "table" then
-            return false,
-                "Product " .. product.id
-                .. " has no box definition"
-        end
-
-        if product.box.kind ~= "tile" then
-            return false,
-                "Product " .. product.id
-                .. " has unsupported box kind: "
-                .. tostring(product.box.kind)
-        end
-
-        if type(product.box.imageOpen) ~= "string"
-            or product.box.imageOpen == "" then
-
-            return false,
-                "Product " .. product.id
-                .. " has no imageOpen"
-        end
-
-        if type(product.box.imageClosed) ~= "string"
-            or product.box.imageClosed == "" then
-
-            return false,
-                "Product " .. product.id
-                .. " has no imageClosed"
-        end
-    end
-
-    return true, nil
 end
 
 return Registry

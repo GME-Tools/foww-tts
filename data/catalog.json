@@ -84,7 +84,7 @@
         },
 
         "scale": {
-          "x": 0.79,
+          "x": 1.14,
           "y": 1.0,
           "z": 1.26
         },
@@ -123,8 +123,8 @@
       "box": {
         "kind": "tile",
 
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_girl.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_girl_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl.jpg",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl_closed.jpg",
 
         "position": {
           "x": -58.5,
@@ -178,8 +178,8 @@
       "box": {
         "kind": "tile",
 
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth.jpg",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.jpg",
 
         "position": {
           "x": -55.5,
