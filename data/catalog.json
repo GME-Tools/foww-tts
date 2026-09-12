@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "test_box",
+      "name": "FOWW Test Box",
+      "wave": 0,
+      "productType": "miniatures",
+
+      "box": {
+        "kind": "tile",
+
+        "image": "",
+
+        "position": {
+          "x": 0,
+          "y": 0,
+          "z": 50
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.8
+        }
+      },
+
+      "contents": {
+        "models": [],
+        "cards": []
+      }
+    }
+  ]
+}
