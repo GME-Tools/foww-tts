@@ -17,9 +17,9 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/starter_set_closed.png",
 
         "position": {
-          "x": -56,
+          "x": -55,
           "y": 1.82,
-          "z": 59
+          "z": 58.5
         },
 
         "rotation": {
@@ -72,7 +72,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/settlement_deck_closed.png",
 
         "position": {
-          "x": -61,
+          "x": -60,
           "y": 1.82,
           "z": 52
         },
@@ -127,7 +127,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl_closed.jpg",
 
         "position": {
-          "x": -58.5,
+          "x": -57.5,
           "y": 1.82,
           "z": 52
         },
@@ -182,7 +182,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.jpg",
 
         "position": {
-          "x": -55.5,
+          "x": -54.5,
           "y": 1.82,
           "z": 52
         },
