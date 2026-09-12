@@ -4,15 +4,15 @@
 
   "products": [
     {
-      "id": "test_box",
-      "name": "FOWW Test Box",
-      "wave": 0,
-      "productType": "miniatures",
+      "id": "w1_starter_set",
+      "name": "Two-Player Starter Set",
+      "wave": 1,
+      "productType": "rules",
 
       "box": {
         "kind": "tile",
 
-        "image": "",
+        "image": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/starter_set.png",
 
         "position": {
           "x": 0,
@@ -27,9 +27,9 @@
         },
 
         "scale": {
-          "x": 1.0,
+          "x": 9.7,
           "y": 1.0,
-          "z": 1.8
+          "z": 9.7
         }
       },
 
