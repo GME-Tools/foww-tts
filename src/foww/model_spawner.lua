@@ -163,11 +163,19 @@ local function spawnSimple(
     position
 )
 
+    local asset =
+        model.asset
+
+
     local object =
         spawnCustomModel(
-            model.asset,
+            asset,
             position,
-            {x = 0, y = 0, z = 0}
+
+            vector(
+                asset.rotation,
+                {x = 0, y = 0, z = 0}
+            )
         )
 
 
@@ -206,7 +214,7 @@ local function spawnComposite(
 
 
     --------------------------------------------------
-    -- Spawn physical root
+    -- Spawn physical root in neutral orientation
     --------------------------------------------------
 
     local root =
@@ -237,23 +245,14 @@ local function spawnComposite(
             )
 
 
-        -- Offset is expressed in root-local coordinates.
         local worldPosition =
             root.positionToWorld(offset)
 
 
-        local rootRotation =
-            root.getRotation()
-
-
         local partRotation =
-            addVectors(
-                rootRotation,
-
-                vector(
-                    part.rotation,
-                    {x = 0, y = 0, z = 0}
-                )
+            vector(
+                part.rotation,
+                {x = 0, y = 0, z = 0}
             )
 
 
@@ -265,12 +264,21 @@ local function spawnComposite(
             )
 
 
-        --------------------------------------------------
-        -- Convert spawned object into child attachment
-        --------------------------------------------------
-
         root.addAttachment(child)
     end
+
+
+    --------------------------------------------------
+    -- Apply global corrective orientation
+    -- AFTER assembly
+    --------------------------------------------------
+
+    root.setRotation(
+        vector(
+            asset.rotation,
+            {x = 0, y = 0, z = 0}
+        )
+    )
 
 
     return root

@@ -10,6 +10,12 @@
       "asset": {
         "kind": "composite_model",
 
+        "rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+        },
+
         "root": {
             "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750024994/CBB0124371990779AC50EA585733F6A2B47C1CF6/",
             "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731146738446/C6B564BD969460ACA98131A165E28CF514975EA0/",
