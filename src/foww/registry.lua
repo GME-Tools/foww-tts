@@ -2,7 +2,12 @@ local Registry = {}
 
 local CATALOG_URL =
     "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/data/catalog.json"
-    local catalog = nil
+local MODELS_URL =
+    "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/data/models.json"
+
+local catalog = nil
+local models = nil
+local modelsById = {}
 
 
 local function validateCatalog(data)
@@ -83,85 +88,228 @@ local function validateCatalog(data)
 end
 
 
+local function validateModels(data)
+
+    if type(data) ~= "table" then
+        return false, "Models root is not an object"
+    end
+
+    if data.schemaVersion ~= 1 then
+        return false,
+            "Unsupported models schemaVersion: "
+            .. tostring(data.schemaVersion)
+    end
+
+    if type(data.models) ~= "table" then
+        return false, "Missing models array"
+    end
+
+    local ids = {}
+
+    for index, model in ipairs(data.models) do
+
+        if type(model.id) ~= "string"
+            or model.id == "" then
+
+            return false,
+                "Model #" .. tostring(index)
+                .. " has no valid id"
+        end
+
+        if ids[model.id] then
+            return false,
+                "Duplicate model id: "
+                .. model.id
+        end
+
+        ids[model.id] = true
+
+        if type(model.name) ~= "string"
+            or model.name == "" then
+
+            return false,
+                "Model " .. model.id
+                .. " has no name"
+        end
+    end
+
+    return true, nil
+end
+
+
+local function validateProductContents(
+    catalogData,
+    modelIndex
+)
+
+    for _, product
+        in ipairs(catalogData.products or {}) do
+
+        local contents =
+            product.contents or {}
+
+        for _, modelId
+            in ipairs(contents.models or {}) do
+
+            if modelIndex[modelId] == nil then
+
+                return false,
+                    "Product "
+                    .. product.id
+                    .. " references unknown model: "
+                    .. modelId
+            end
+        end
+    end
+
+    return true, nil
+end
+
+
 function Registry.load(callback)
 
     print("[FOWW] Loading catalog...")
 
     WebRequest.get(CATALOG_URL, function(request)
 
-        if request.is_error then
-            print("[FOWW] Catalog request failed:")
-            print(request.error)
+        if request.is_error
+            or request.response_code ~= 200 then
 
-            if callback then
-                callback(false, nil)
-            end
-
-            return
-        end
-
-        if request.response_code ~= 200 then
             print(
-                "[FOWW] Catalog returned HTTP "
-                .. tostring(request.response_code)
+                "[FOWW] Catalog request failed: "
+                .. tostring(request.error)
             )
 
-            if callback then
-                callback(false, nil)
-            end
-
+            callback(false, nil)
             return
         end
 
-        local ok, data = pcall(JSON.decode, request.text)
+        local ok, data =
+            pcall(JSON.decode, request.text)
 
         if not ok or data == nil then
             print("[FOWW] Could not decode catalog JSON")
-
-            if callback then
-                callback(false, nil)
-            end
-
+            callback(false, nil)
             return
         end
 
-        local valid, validationError = validateCatalog(data)
+        local valid, validationError =
+            validateCatalog(data)
 
         if not valid then
-
             print(
                 "[FOWW] Invalid catalog: "
                 .. validationError
             )
 
-            if callback then
-                callback(false, nil)
-            end
-
+            callback(false, nil)
             return
         end
 
         catalog = data
 
         print(
-            "[FOWW] Catalog loaded: version "
+            "[FOWW] Catalog loaded: "
             .. tostring(catalog.catalogVersion)
         )
 
-        print(
-            "[FOWW] Products: "
-            .. tostring(#catalog.products)
-        )
 
-        if callback then
-            callback(true, catalog)
-        end
+        ------------------------------------------------
+        -- Models
+        ------------------------------------------------
+
+        print("[FOWW] Loading models...")
+
+        WebRequest.get(MODELS_URL, function(modelRequest)
+
+            if modelRequest.is_error
+                or modelRequest.response_code ~= 200 then
+
+                print(
+                    "[FOWW] Models request failed: "
+                    .. tostring(modelRequest.error)
+                )
+
+                callback(false, nil)
+                return
+            end
+
+            local modelOk, modelData =
+                pcall(
+                    JSON.decode,
+                    modelRequest.text
+                )
+
+            if not modelOk or modelData == nil then
+                print(
+                    "[FOWW] Could not decode models JSON"
+                )
+
+                callback(false, nil)
+                return
+            end
+
+            local modelsValid, modelsError =
+                validateModels(modelData)
+
+            if not modelsValid then
+                print(
+                    "[FOWW] Invalid models registry: "
+                    .. modelsError
+                )
+
+                callback(false, nil)
+                return
+            end
+
+            models = modelData
+            modelsById = {}
+
+            for _, model
+                in ipairs(models.models) do
+
+                modelsById[model.id] = model
+            end
+
+            local contentsValid, contentsError =
+                validateProductContents(
+                    catalog,
+                    modelsById
+                )
+
+            if not contentsValid then
+
+                print(
+                    "[FOWW] Invalid product contents: "
+                    .. contentsError
+                )
+
+                callback(false, nil)
+                return
+            end
+
+            print(
+                "[FOWW] Models loaded: "
+                .. tostring(#models.models)
+            )
+
+            callback(true, {
+                catalog = catalog,
+                models = models,
+                modelsById = modelsById
+            })
+        end)
     end)
 end
 
 
 function Registry.getCatalog()
     return catalog
+end
+
+
+function Registry.getModel(modelId)
+    return modelsById[modelId]
 end
 
 return Registry

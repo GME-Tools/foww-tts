@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "nora",
+      "name": "Nora",
+      "faction": "survivors"
+    },
+
+    {
+      "id": "dogmeat",
+      "name": "Dogmeat",
+      "faction": "survivors"
+    },
+
+    {
+      "id": "nuka_girl",
+      "name": "Nuka Cola Girl",
+      "faction": "survivors"
+    }
+  ]
+}

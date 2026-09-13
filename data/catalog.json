@@ -54,7 +54,10 @@
       },
 
       "contents": {
-        "models": [],
+        "models": [
+          "nora",
+          "dogmeat"
+        ],
         "cards": []
       }
     },
@@ -164,7 +167,9 @@
       },
 
       "contents": {
-        "models": [],
+        "models": [
+          "nuka_girl"
+        ],
         "cards": []
       }
     },
