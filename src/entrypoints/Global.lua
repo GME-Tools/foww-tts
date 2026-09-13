@@ -37,3 +37,58 @@ function fowwSetProductState(
         opened
     )
 end
+
+
+function fowwSpawnModel(modelId)
+
+    return App.spawnModel(
+        modelId,
+        {x = 0, y = 3, z = 8}
+    )
+end
+
+
+function fowwShowAvailableModels()
+
+    return App.showAvailableModels()
+end
+
+
+function fowwClearModelDisplay()
+
+    return App.clearModelDisplay()
+end
+
+
+--------------------------------------------------
+-- Debug UI callbacks
+--------------------------------------------------
+
+function fowwDebugShowModels(
+    player,
+    value,
+    id
+)
+
+    App.showAvailableModels()
+end
+
+
+function fowwDebugClearModels(
+    player,
+    value,
+    id
+)
+
+    App.clearModelDisplay()
+end
+
+
+function fowwDebugRebuildPool(
+    player,
+    value,
+    id
+)
+
+    App.rebuildPool()
+end

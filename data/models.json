@@ -5,8 +5,22 @@
   "models": [
     {
       "id": "nora",
-      "name": "Nora",
-      "faction": "survivors"
+      "name": "Nora (Sole Survivor)",
+      "faction": "survivors",
+      "asset": {
+        "kind": "custom_model",
+        "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750024994/CBB0124371990779AC50EA585733F6A2B47C1CF6/",
+        "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731146738446/C6B564BD969460ACA98131A165E28CF514975EA0/",
+        "normal": "https://steamusercontent-a.akamaihd.net/ugc/2465235108754086748/9A520DE866592DE92241276AA32A1B777C0A0AE5/",
+        "collider": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750066663/E47EBAF3976CCFFE2929132E3590254D2C76B917/",
+        "type": 1,
+        "material": "wood",
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        }
+      }
     },
 
     {

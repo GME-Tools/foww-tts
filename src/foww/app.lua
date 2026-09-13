@@ -2,6 +2,9 @@ local Registry = require("foww.registry")
 local Products = require("foww.products")
 local State = require("foww.state")
 local Pool = require("foww.pool")
+local ModelSpawner = require("foww.model_spawner")
+local Armory = require("foww.armory")
+local DebugUI = require("foww.debug_ui")
 
 
 local App = {}
@@ -49,7 +52,7 @@ end
 function App.onLoad(saved_data)
 
     print("[FOWW] Starting...")
-
+    DebugUI.mount()
 
     --------------------------------------------------
     -- Restore persistent collection state
@@ -186,6 +189,98 @@ function App.setProductState(
             and {0.5, 1.0, 0.5}
             or  {1.0, 0.6, 0.4}
     )
+end
+
+--------------------------------------------------
+-- Model display / Armory
+--------------------------------------------------
+
+function App.spawnModel(
+    modelId,
+    position
+)
+
+    if currentPool == nil then
+
+        print(
+            "[FOWW] Cannot spawn model: "
+            .. "pool not ready"
+        )
+
+        return nil
+    end
+
+
+    local model =
+        currentPool.models[modelId]
+
+
+    if model == nil then
+
+        print(
+            "[FOWW] Model not available: "
+            .. tostring(modelId)
+        )
+
+        return nil
+    end
+
+
+    return ModelSpawner.spawn(
+        model,
+        position
+    )
+end
+
+
+function App.showAvailableModels()
+
+    if currentRegistry == nil then
+
+        print(
+            "[FOWW] Cannot show models: "
+            .. "registry not ready"
+        )
+
+        return 0
+    end
+
+
+    if currentPool == nil then
+
+        print(
+            "[FOWW] Cannot show models: "
+            .. "pool not ready"
+        )
+
+        return 0
+    end
+
+
+    local layout = nil
+
+
+    if currentRegistry.catalog.layout
+        ~= nil then
+
+        layout =
+            currentRegistry
+            .catalog
+            .layout
+            .modelDisplay
+    end
+
+
+    return Armory.show(
+        currentPool,
+        layout
+    )
+end
+
+
+function App.clearModelDisplay()
+
+    return Armory.clear()
 end
 
 

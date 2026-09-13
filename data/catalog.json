@@ -2,6 +2,19 @@
   "schemaVersion": 1,
   "catalogVersion": "0.1.0",
 
+  "layout": {
+    "modelDisplay": {
+      "origin": {
+        "x": -30,
+        "y": 4.21,
+        "z": 100
+      },
+
+      "xSpacing": 2.5,
+      "zSpacing": 5.0
+    }
+  },
+
   "products": [
     {
       "id": "w1_starter_set",
@@ -106,8 +119,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 100,
-            "height": 100
+            "width": 200,
+            "height": 300
         }
       },
 
@@ -161,8 +174,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 100,
-            "height": 100
+            "width": 300,
+            "height": 300
         }
       },
 
@@ -218,8 +231,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 100,
-            "height": 100
+            "width": 300,
+            "height": 300
         }
       },
 
