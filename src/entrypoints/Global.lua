@@ -48,47 +48,90 @@ function fowwSpawnModel(modelId)
 end
 
 
-function fowwShowAvailableModels()
-
-    return App.showAvailableModels()
-end
-
-
-function fowwClearModelDisplay()
-
-    return App.clearModelDisplay()
-end
-
-
 --------------------------------------------------
--- Debug UI callbacks
+-- Armory UI
 --------------------------------------------------
 
-function fowwDebugShowModels(
+function fowwArmorySearchChanged(
     player,
     value,
     id
 )
 
-    App.showAvailableModels()
+    App.setArmorySearch(
+        value
+    )
 end
 
 
-function fowwDebugClearModels(
+function fowwArmoryFactionChanged(
     player,
     value,
     id
 )
 
-    App.clearModelDisplay()
+    App.setArmoryFaction(
+        value
+    )
 end
 
 
-function fowwDebugRebuildPool(
+function fowwArmoryResetFilters(
     player,
     value,
     id
 )
 
-    App.rebuildPool()
+    App.resetArmoryFilters()
+end
+
+
+function fowwArmorySpawnModel(
+    player,
+    value,
+    id
+)
+
+    local prefix =
+        "fowwArmorySpawn__"
+
+
+    if id == nil then
+        return
+    end
+
+
+    if string.sub(
+        id,
+        1,
+        #prefix
+    ) ~= prefix then
+
+        return
+    end
+
+
+    local modelId =
+        string.sub(
+            id,
+            #prefix + 1
+        )
+
+
+    App.spawnArmoryModel(
+        modelId,
+        player.color
+    )
+end
+
+
+function fowwArmorySpawnFiltered(
+    player,
+    value,
+    id
+)
+
+    App.spawnArmoryFiltered(
+        player.color
+    )
 end

@@ -5,286 +5,280 @@ local ModelSpawner =
 local Armory = {}
 
 
-local DISPLAY_TAG =
-    "foww-model-display"
+local ARMORY_TAG =
+    "foww-armory-spawned"
 
 
 --------------------------------------------------
--- Helpers
+-- Layout
 --------------------------------------------------
 
-local function getOrigin(layout)
+local function normalizeLayout(layout)
+
+    layout =
+        layout or {}
 
     local origin =
-        layout
-        and layout.origin
-        or {}
+        layout.origin or {}
 
     return {
-        x = origin.x or -20,
-        y = origin.y or 2,
-        z = origin.z or 15
+        origin = {
+            x = origin.x or -20,
+            y = origin.y or 2,
+            z = origin.z or 15
+        },
+
+        columns =
+            layout.columns or 6,
+
+        xSpacing =
+            layout.xSpacing or 2.5,
+
+        zSpacing =
+            layout.zSpacing or 3.0,
+
+        occupancyRadius =
+            layout.occupancyRadius or 0.8
     }
 end
 
 
-local function getFactionName(model)
+local function getSlotPosition(
+    slotIndex,
+    layout
+)
 
-    if model.faction == nil
-        or model.faction == "" then
+    local column =
+        slotIndex % layout.columns
 
-        return "unassigned"
-    end
+    local row =
+        math.floor(
+            slotIndex
+            / layout.columns
+        )
 
-    return model.faction
+    return {
+        x =
+            layout.origin.x
+            + column
+            * layout.xSpacing,
+
+        y =
+            layout.origin.y,
+
+        z =
+            layout.origin.z
+            + row
+            * layout.zSpacing
+    }
 end
 
 
 --------------------------------------------------
--- Build faction groups
+-- Slot occupancy
 --------------------------------------------------
 
-local function groupModelsByFaction(pool)
+local function isSlotOccupied(
+    position,
+    layout
+)
 
-    local groups = {}
+    local radius =
+        layout.occupancyRadius
 
-
-    for _, model
-        in pairs(pool.models or {}) do
-
-        local faction =
-            getFactionName(model)
-
-
-        if groups[faction] == nil then
-            groups[faction] = {}
-        end
-
-
-        table.insert(
-            groups[faction],
-            model
-        )
-    end
-
-
-    --------------------------------------------------
-    -- Sort models inside each faction
-    --------------------------------------------------
-
-    for _, models
-        in pairs(groups) do
-
-        table.sort(
-            models,
-
-            function(a, b)
-
-                local nameA =
-                    a.name or a.id
-
-                local nameB =
-                    b.name or b.id
-
-                return nameA < nameB
-            end
-        )
-    end
-
-
-    return groups
-end
-
-
-local function sortedFactionNames(groups)
-
-    local names = {}
-
-
-    for faction, _
-        in pairs(groups) do
-
-        table.insert(
-            names,
-            faction
-        )
-    end
-
-
-    table.sort(names)
-
-
-    return names
-end
-
-
---------------------------------------------------
--- Clear current display
---------------------------------------------------
-
-function Armory.clear()
-
-    local count = 0
+    local radiusSquared =
+        radius * radius
 
 
     for _, object
         in ipairs(getAllObjects()) do
 
-        if object.hasTag(DISPLAY_TAG) then
+        if object.hasTag(ARMORY_TAG) then
 
-            destroyObject(object)
+            local objectPosition =
+                object.getPosition()
 
-            count =
-                count + 1
+            local dx =
+                objectPosition.x
+                - position.x
+
+            local dz =
+                objectPosition.z
+                - position.z
+
+            local distanceSquared =
+                dx * dx
+                + dz * dz
+
+
+            if distanceSquared
+                <= radiusSquared then
+
+                return true
+            end
         end
     end
 
 
-    print(
-        "[FOWW] Cleared model display: "
-        .. tostring(count)
-    )
+    return false
+end
 
 
-    return count
+local function findFreePosition(layout)
+
+    --------------------------------------------------
+    -- 200 staging slots is an arbitrary safety limit.
+    --------------------------------------------------
+
+    for slotIndex = 0, 199 do
+
+        local position =
+            getSlotPosition(
+                slotIndex,
+                layout
+            )
+
+        if not isSlotOccupied(
+            position,
+            layout
+        ) then
+
+            return position
+        end
+    end
+
+
+    return nil
 end
 
 
 --------------------------------------------------
--- Build current model display
+-- Spawn one playable model
 --------------------------------------------------
 
-function Armory.show(
-    pool,
-    layout
+function Armory.spawnModel(
+    model,
+    layoutData
 )
 
-    --------------------------------------------------
-    -- Remove previous temporary display
-    --------------------------------------------------
-
-    Armory.clear()
-
-
-    if pool == nil
-        or pool.models == nil then
-
-        print(
-            "[FOWW] Cannot show models: "
-            .. "pool unavailable"
-        )
-
-        return 0
+    if model == nil then
+        return nil
     end
 
 
-    --------------------------------------------------
-    -- Layout
-    --------------------------------------------------
-
-    layout =
-        layout or {}
-
-
-    local origin =
-        getOrigin(layout)
-
-
-    local xSpacing =
-        layout.xSpacing or 2.5
-
-
-    local zSpacing =
-        layout.zSpacing or 5.0
-
-
-    --------------------------------------------------
-    -- Group + sort
-    --------------------------------------------------
-
-    local groups =
-        groupModelsByFaction(pool)
-
-
-    local factions =
-        sortedFactionNames(groups)
-
-
-    --------------------------------------------------
-    -- Spawn
-    --------------------------------------------------
-
-    local spawnedCount = 0
-
-
-    for factionIndex, faction
-        in ipairs(factions) do
-
-        local models =
-            groups[faction]
-
-
-        local z =
-            origin.z
-            + (
-                (factionIndex - 1)
-                * zSpacing
-            )
-
+    if model.asset == nil then
 
         print(
-            "[FOWW] Display faction: "
-            .. faction
-            .. " ("
-            .. tostring(#models)
-            .. " models)"
+            "[FOWW] Cannot spawn "
+            .. model.id
+            .. ": no asset"
+        )
+
+        return nil
+    end
+
+
+    local layout =
+        normalizeLayout(
+            layoutData
         )
 
 
-        for modelIndex, model
-            in ipairs(models) do
+    local position =
+        findFreePosition(layout)
 
-            local x =
-                origin.x
-                + (
-                    (modelIndex - 1)
-                    * xSpacing
-                )
 
+    if position == nil then
+
+        print(
+            "[FOWW] Armory staging area is full"
+        )
+
+        return nil
+    end
+
+
+    local object =
+        ModelSpawner.spawn(
+            model,
+            position
+        )
+
+
+    if object ~= nil then
+
+        --------------------------------------------------
+        -- Metadata only.
+        --
+        -- This does NOT make the object temporary.
+        -- It remains a real playable model.
+        --------------------------------------------------
+
+        object.addTag(
+            ARMORY_TAG
+        )
+
+        print(
+            "[FOWW] Armory spawned: "
+            .. model.name
+        )
+    end
+
+
+    return object
+end
+
+
+--------------------------------------------------
+-- Spawn a set of models
+--------------------------------------------------
+
+function Armory.spawnModels(
+    models,
+    layoutData
+)
+
+    local spawned =
+        0
+
+    local unavailable =
+        0
+
+
+    for _, model
+        in ipairs(models or {}) do
+
+        if model.asset == nil then
+
+            unavailable =
+                unavailable + 1
+
+        else
 
             local object =
-                ModelSpawner.spawn(
+                Armory.spawnModel(
                     model,
-
-                    {
-                        x = x,
-                        y = origin.y,
-                        z = z
-                    }
+                    layoutData
                 )
-
 
             if object ~= nil then
-
-                object.addTag(
-                    DISPLAY_TAG
-                )
-
-                spawnedCount =
-                    spawnedCount + 1
+                spawned =
+                    spawned + 1
             end
         end
     end
 
 
     print(
-        "[FOWW] Model display ready: "
-        .. tostring(spawnedCount)
-        .. " models"
+        "[FOWW] Armory batch: "
+        .. tostring(spawned)
+        .. " spawned, "
+        .. tostring(unavailable)
+        .. " unavailable"
     )
 
 
-    return spawnedCount
+    return spawned
 end
 
 

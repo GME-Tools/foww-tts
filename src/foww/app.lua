@@ -1,16 +1,53 @@
-local Registry = require("foww.registry")
-local Products = require("foww.products")
-local State = require("foww.state")
-local Pool = require("foww.pool")
-local ModelSpawner = require("foww.model_spawner")
-local Armory = require("foww.armory")
-local DebugUI = require("foww.debug_ui")
+local Registry =
+    require("foww.registry")
+
+local Products =
+    require("foww.products")
+
+local State =
+    require("foww.state")
+
+local Pool =
+    require("foww.pool")
+
+local Armory =
+    require("foww.armory")
+
+local ArmoryUI =
+    require("foww.armory_ui")
 
 
 local App = {}
 
-local currentRegistry = nil
-local currentPool = nil
+local currentRegistry =
+    nil
+
+local currentPool =
+    nil
+
+
+--------------------------------------------------
+-- Helpers
+--------------------------------------------------
+
+local function getArmoryLayout()
+
+    if currentRegistry == nil then
+        return nil
+    end
+
+
+    local catalog =
+        currentRegistry.catalog
+
+
+    if catalog.layout == nil then
+        return nil
+    end
+
+
+    return catalog.layout.armory
+end
 
 
 --------------------------------------------------
@@ -20,7 +57,12 @@ local currentPool = nil
 local function rebuildPool()
 
     if currentRegistry == nil then
-        print("[FOWW] Cannot rebuild pool: registry not ready")
+
+        print(
+            "[FOWW] Cannot rebuild pool: "
+            .. "registry not ready"
+        )
+
         return
     end
 
@@ -31,7 +73,11 @@ local function rebuildPool()
             currentRegistry.modelsById,
 
             function(product)
-                return State.isProductOpen(product)
+
+                return
+                    State.isProductOpen(
+                        product
+                    )
             end
         )
 
@@ -39,8 +85,19 @@ local function rebuildPool()
     print(
         "[FOWW] Available models: "
         .. tostring(
-            Pool.countModels(currentPool)
+            Pool.countModels(
+                currentPool
+            )
         )
+    )
+
+
+    --------------------------------------------------
+    -- Pool changed -> Armory UI changes immediately.
+    --------------------------------------------------
+
+    ArmoryUI.refresh(
+        currentPool
     )
 end
 
@@ -52,59 +109,83 @@ end
 function App.onLoad(saved_data)
 
     print("[FOWW] Starting...")
-    DebugUI.mount()
-
-    --------------------------------------------------
-    -- Restore persistent collection state
-    --------------------------------------------------
-
-    State.load(saved_data)
 
 
     --------------------------------------------------
-    -- Load remote registries
+    -- UI initially displays an empty/loading pool.
     --------------------------------------------------
 
-    Registry.load(function(success, registry)
-
-        if not success then
-
-            print(
-                "[FOWW] Startup aborted: "
-                .. "registry unavailable"
-            )
-
-            return
-        end
+    ArmoryUI.mount(nil)
 
 
-        currentRegistry = registry
+    --------------------------------------------------
+    -- Restore collection state
+    --------------------------------------------------
 
-        print("[FOWW] Registry ready")
+    State.load(
+        saved_data
+    )
 
 
-        --------------------------------------------------
-        -- Reconcile physical product boxes
-        --------------------------------------------------
+    --------------------------------------------------
+    -- Load registries
+    --------------------------------------------------
 
-        Products.reconcile(
-            currentRegistry.catalog,
-
-            function(product)
-                return State.isProductOpen(product)
-            end
+    Registry.load(
+        function(
+            success,
+            registry
         )
 
+            if not success then
 
-        --------------------------------------------------
-        -- Build logical available-content pool
-        --------------------------------------------------
+                print(
+                    "[FOWW] Startup aborted: "
+                    .. "registry unavailable"
+                )
 
-        rebuildPool()
+                return
+            end
 
 
-        print("[FOWW] Startup complete")
-    end)
+            currentRegistry =
+                registry
+
+
+            print(
+                "[FOWW] Registry ready"
+            )
+
+
+            --------------------------------------------------
+            -- Physical product boxes
+            --------------------------------------------------
+
+            Products.reconcile(
+                currentRegistry.catalog,
+
+                function(product)
+
+                    return
+                        State.isProductOpen(
+                            product
+                        )
+                end
+            )
+
+
+            --------------------------------------------------
+            -- Logical content
+            --------------------------------------------------
+
+            rebuildPool()
+
+
+            print(
+                "[FOWW] Startup complete"
+            )
+        end
+    )
 end
 
 
@@ -124,12 +205,10 @@ function App.setProductState(
     opened
 )
 
-    --------------------------------------------------
-    -- Resolve TTS object -> catalog product
-    --------------------------------------------------
-
     local product =
-        Products.getProductForObject(object)
+        Products.getProductForObject(
+            object
+        )
 
 
     if product == nil then
@@ -142,19 +221,11 @@ function App.setProductState(
     end
 
 
-    --------------------------------------------------
-    -- Update persistent logical state
-    --------------------------------------------------
-
     State.setProductOpen(
         product.id,
         opened
     )
 
-
-    --------------------------------------------------
-    -- Update visual representation
-    --------------------------------------------------
 
     Products.refreshVisual(
         object,
@@ -164,18 +235,16 @@ function App.setProductState(
 
 
     --------------------------------------------------
-    -- Recalculate available content
+    -- This also refreshes the Armory UI.
     --------------------------------------------------
 
     rebuildPool()
 
 
-    --------------------------------------------------
-    -- User feedback
-    --------------------------------------------------
-
     local label =
-        opened and "OPEN" or "CLOSED"
+        opened
+        and "OPEN"
+        or "CLOSED"
 
 
     broadcastToColor(
@@ -191,13 +260,48 @@ function App.setProductState(
     )
 end
 
+
 --------------------------------------------------
--- Model display / Armory
+-- Armory : filters
 --------------------------------------------------
 
-function App.spawnModel(
+function App.setArmorySearch(
+    value
+)
+
+    ArmoryUI.setSearch(
+        value,
+        currentPool
+    )
+end
+
+
+function App.setArmoryFaction(
+    value
+)
+
+    ArmoryUI.setFaction(
+        value,
+        currentPool
+    )
+end
+
+
+function App.resetArmoryFilters()
+
+    ArmoryUI.resetFilters(
+        currentPool
+    )
+end
+
+
+--------------------------------------------------
+-- Armory : spawn one model
+--------------------------------------------------
+
+function App.spawnArmoryModel(
     modelId,
-    position
+    playerColor
 )
 
     if currentPool == nil then
@@ -212,13 +316,15 @@ function App.spawnModel(
 
 
     local model =
-        currentPool.models[modelId]
+        currentPool.models[
+            modelId
+        ]
 
 
     if model == nil then
 
         print(
-            "[FOWW] Model not available: "
+            "[FOWW] Model is not available: "
             .. tostring(modelId)
         )
 
@@ -226,67 +332,77 @@ function App.spawnModel(
     end
 
 
-    return ModelSpawner.spawn(
-        model,
-        position
-    )
+    local object =
+        Armory.spawnModel(
+            model,
+            getArmoryLayout()
+        )
+
+
+    if object ~= nil
+        and playerColor ~= nil then
+
+        broadcastToColor(
+            "Spawned "
+            .. model.name,
+
+            playerColor,
+
+            {0.6, 1.0, 0.6}
+        )
+    end
+
+
+    return object
 end
 
 
-function App.showAvailableModels()
+--------------------------------------------------
+-- Armory : spawn current filtered selection
+--------------------------------------------------
 
-    if currentRegistry == nil then
-
-        print(
-            "[FOWW] Cannot show models: "
-            .. "registry not ready"
-        )
-
-        return 0
-    end
-
+function App.spawnArmoryFiltered(
+    playerColor
+)
 
     if currentPool == nil then
-
-        print(
-            "[FOWW] Cannot show models: "
-            .. "pool not ready"
-        )
-
         return 0
     end
 
 
-    local layout = nil
+    local models =
+        ArmoryUI.getFilteredModels(
+            currentPool
+        )
 
 
-    if currentRegistry.catalog.layout
-        ~= nil then
+    local spawned =
+        Armory.spawnModels(
+            models,
+            getArmoryLayout()
+        )
 
-        layout =
-            currentRegistry
-            .catalog
-            .layout
-            .modelDisplay
+
+    if playerColor ~= nil then
+
+        broadcastToColor(
+            "Armory: "
+            .. tostring(spawned)
+            .. " model(s) spawned",
+
+            playerColor,
+
+            {0.6, 1.0, 0.6}
+        )
     end
 
 
-    return Armory.show(
-        currentPool,
-        layout
-    )
-end
-
-
-function App.clearModelDisplay()
-
-    return Armory.clear()
+    return spawned
 end
 
 
 --------------------------------------------------
 -- Public accessors
--- Useful for future UI / Armory / spawning
 --------------------------------------------------
 
 function App.getRegistry()
