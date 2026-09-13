@@ -8,6 +8,10 @@ local MATERIALS = {
 }
 
 
+--------------------------------------------------
+-- Helpers
+--------------------------------------------------
+
 local function vector(data, default)
 
     if data == nil then
@@ -42,49 +46,25 @@ local function materialId(material)
 end
 
 
-function ModelSpawner.spawn(
-    model,
-    position
+local function addVectors(a, b)
+
+    return {
+        x = (a.x or 0) + (b.x or 0),
+        y = (a.y or 0) + (b.y or 0),
+        z = (a.z or 0) + (b.z or 0)
+    }
+end
+
+
+--------------------------------------------------
+-- Spawn one Custom Model
+--------------------------------------------------
+
+local function spawnCustomModel(
+    asset,
+    position,
+    rotation
 )
-
-    if model == nil then
-        print("[FOWW] Cannot spawn nil model")
-        return nil
-    end
-
-
-    if model.asset == nil then
-        print(
-            "[FOWW] Model has no asset: "
-            .. model.id
-        )
-        return nil
-    end
-
-
-    local asset = model.asset
-
-
-    if asset.kind ~= "custom_model" then
-        print(
-            "[FOWW] Unsupported model asset kind: "
-            .. tostring(asset.kind)
-        )
-        return nil
-    end
-
-
-    if asset.mesh == nil
-        or asset.diffuse == nil then
-
-        print(
-            "[FOWW] Incomplete asset for model: "
-            .. model.id
-        )
-
-        return nil
-    end
-
 
     local object = spawnObject({
         type = "Custom_Model",
@@ -92,6 +72,10 @@ function ModelSpawner.spawn(
         position =
             position
             or {x = 0, y = 2, z = 0},
+
+        rotation =
+            rotation
+            or {x = 0, y = 0, z = 0},
 
         sound = false
     })
@@ -135,6 +119,19 @@ function ModelSpawner.spawn(
     )
 
 
+    return object
+end
+
+
+--------------------------------------------------
+-- Final model metadata
+--------------------------------------------------
+
+local function configureModelObject(
+    object,
+    model
+)
+
     object.setName(model.name)
 
     object.setDescription(
@@ -154,12 +151,203 @@ function ModelSpawner.spawn(
         kind = "model",
         modelId = model.id
     }))
+end
 
 
-    print(
-        "[FOWW] Spawned model: "
-        .. model.name
+--------------------------------------------------
+-- Simple model
+--------------------------------------------------
+
+local function spawnSimple(
+    model,
+    position
+)
+
+    local object =
+        spawnCustomModel(
+            model.asset,
+            position,
+            {x = 0, y = 0, z = 0}
+        )
+
+
+    configureModelObject(
+        object,
+        model
     )
+
+
+    return object
+end
+
+
+--------------------------------------------------
+-- Composite model
+--------------------------------------------------
+
+local function spawnComposite(
+    model,
+    position
+)
+
+    local asset =
+        model.asset
+
+
+    if asset.root == nil then
+
+        print(
+            "[FOWW] Composite model has no root: "
+            .. model.id
+        )
+
+        return nil
+    end
+
+
+    --------------------------------------------------
+    -- Spawn physical root
+    --------------------------------------------------
+
+    local root =
+        spawnCustomModel(
+            asset.root,
+            position,
+            {x = 0, y = 0, z = 0}
+        )
+
+
+    configureModelObject(
+        root,
+        model
+    )
+
+
+    --------------------------------------------------
+    -- Spawn and attach parts
+    --------------------------------------------------
+
+    for _, part
+        in ipairs(asset.parts or {}) do
+
+        local offset =
+            vector(
+                part.offset,
+                {x = 0, y = 0, z = 0}
+            )
+
+
+        -- Offset is expressed in root-local coordinates.
+        local worldPosition =
+            root.positionToWorld(offset)
+
+
+        local rootRotation =
+            root.getRotation()
+
+
+        local partRotation =
+            addVectors(
+                rootRotation,
+
+                vector(
+                    part.rotation,
+                    {x = 0, y = 0, z = 0}
+                )
+            )
+
+
+        local child =
+            spawnCustomModel(
+                part,
+                worldPosition,
+                partRotation
+            )
+
+
+        --------------------------------------------------
+        -- Convert spawned object into child attachment
+        --------------------------------------------------
+
+        root.addAttachment(child)
+    end
+
+
+    return root
+end
+
+
+--------------------------------------------------
+-- Public spawn
+--------------------------------------------------
+
+function ModelSpawner.spawn(
+    model,
+    position
+)
+
+    if model == nil then
+
+        print("[FOWW] Cannot spawn nil model")
+
+        return nil
+    end
+
+
+    if model.asset == nil then
+
+        print(
+            "[FOWW] Model has no asset: "
+            .. model.id
+        )
+
+        return nil
+    end
+
+
+    local kind =
+        model.asset.kind
+
+
+    local object = nil
+
+
+    if kind == "custom_model" then
+
+        object =
+            spawnSimple(
+                model,
+                position
+            )
+
+
+    elseif kind == "composite_model" then
+
+        object =
+            spawnComposite(
+                model,
+                position
+            )
+
+
+    else
+
+        print(
+            "[FOWW] Unsupported model asset kind: "
+            .. tostring(kind)
+        )
+
+        return nil
+    end
+
+
+    if object ~= nil then
+
+        print(
+            "[FOWW] Spawned model: "
+            .. model.name
+        )
+    end
 
 
     return object

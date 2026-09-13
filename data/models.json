@@ -8,18 +8,47 @@
       "name": "Nora (Sole Survivor)",
       "faction": "survivors",
       "asset": {
-        "kind": "custom_model",
-        "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750024994/CBB0124371990779AC50EA585733F6A2B47C1CF6/",
-        "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731146738446/C6B564BD969460ACA98131A165E28CF514975EA0/",
-        "normal": "https://steamusercontent-a.akamaihd.net/ugc/2465235108754086748/9A520DE866592DE92241276AA32A1B777C0A0AE5/",
-        "collider": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750066663/E47EBAF3976CCFFE2929132E3590254D2C76B917/",
-        "type": 1,
-        "material": "wood",
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        }
+        "kind": "composite_model",
+
+        "root": {
+            "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750024994/CBB0124371990779AC50EA585733F6A2B47C1CF6/",
+            "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731146738446/C6B564BD969460ACA98131A165E28CF514975EA0/",
+            "normal": "https://steamusercontent-a.akamaihd.net/ugc/2465235108754086748/9A520DE866592DE92241276AA32A1B777C0A0AE5/",
+            "collider": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750066663/E47EBAF3976CCFFE2929132E3590254D2C76B917/",
+            "material": "wood",
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+
+        "parts": [
+            {
+                "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2465235108750026015/BE8C179A69624EB181B4989731EC3B3A618F05C1/",
+                "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731151440646/FD4EB113C57E1CC54EE2EEA3ADBC5F54A4B7E12E/",
+                "normal": "https://steamusercontent-a.akamaihd.net/ugc/2465235108753875772/60236F663437FCA823BB4A022FD694E034ED162C/",
+                "material": "wood",
+
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        ]
       }
     },
 
