@@ -3,15 +3,17 @@
   "catalogVersion": "0.1.0",
 
   "layout": {
-    "modelDisplay": {
+    "armory": {
       "origin": {
         "x": -30,
         "y": 4.21,
         "z": 100
       },
 
+      "columns": 6,
       "xSpacing": 2.5,
-      "zSpacing": 5.0
+      "zSpacing": 3.0,
+      "occupancyRadius": 0.8
     }
   },
 
