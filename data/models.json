@@ -61,7 +61,111 @@
     {
       "id": "dogmeat",
       "name": "Dogmeat",
-      "faction": "survivors"
+      "faction": "survivors",
+      "asset": {
+        "kind": "composite_model",
+
+        "rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+        },
+
+        "root": {
+            "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2443843731154758062/8049A6AAA5DD286924D345E62469B654FF17B202/",
+            "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731155526305/3AD8EF3C4484B6298E3148FEE301F7C14E40D90E/",
+            "normal": "https://steamusercontent-a.akamaihd.net/ugc/2443843731154918712/72D4838715B6B05D2C8B45B575D901FBB1CA8B57/",
+            "collider": "https://steamusercontent-a.akamaihd.net/ugc/2443843731154761389/623C18FC273EF9F21E15A4E631255537E8E40D04/",
+            "material": "wood",
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+
+        "parts": [
+            {
+                "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2443843731154754852/9349E2F938A8B4C06EEAF6696C3E14138DFF3ACA/",
+                "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731155364236/34E5EACF7CB4D093B0BAD0C05997FCC98B5C0477/",
+                "normal": "https://steamusercontent-a.akamaihd.net/ugc/2443843731154915913/A5830509B89CAA57FCF2F2240FDC73897960CF81/",
+                "material": "wood",
+
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        ]
+      }
+    },
+
+    {
+      "id": "settler_h",
+      "name": "Settler",
+      "faction": "survivors",
+      "asset": {
+        "kind": "composite_model",
+
+        "rotation": {
+            "x": 0,
+            "y": 180,
+            "z": 0
+        },
+
+        "root": {
+            "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161530274/1E93019C85C139F08BAEC1190A588AFE05B364E8/",
+            "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161533043/34AA074DE1EFEBCA05964FCA895B48814E318504/",
+            "normal": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161531715/429F8A170FEC4940C8A80F0411E90D6DBE1A3EA2/",
+            "collider": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161531088/DDC980713B82FE0E403A8FB0BC24C11BE5BC9262/",
+            "material": "wood",
+            "scale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+
+        "parts": [
+            {
+                "mesh": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161525089/FB7FD2D2C32A573D6485F74001E59B6AD816D233/",
+                "diffuse": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161528735/9249F1A3D2A43C26B4577BF61B7498D92D277E89/",
+                "normal": "https://steamusercontent-a.akamaihd.net/ugc/2443843731161527138/7719C2E9C2A0029AB72071EE47505CCB46BDABA0/",
+                "material": "wood",
+
+                "offset": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "rotation": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        ]
+      }
     },
 
     {
