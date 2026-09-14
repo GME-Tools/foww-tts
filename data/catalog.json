@@ -71,11 +71,23 @@
       "contents": {
         "models": [
           "nora",
-          "dogmeat"
+          "dogmeat",
+          "settler_m",
+          "settler_f",
+          "brute",
+          "super_mutant",
+          "aviator",
+          "mutant_hound_1",
+          "mutant_hound_2",
+          "enslaved_tech",
+          "aspirant_goddard",
+          "deathclaw",
+          "alien_zetan"
         ],
         "cards": []
       }
     },
+
     {
       "id": "w1_settlement_deck",
       "name": "Settlement Deck",
@@ -131,6 +143,20 @@
         "cards": []
       }
     },
+
+    {
+      "id": "w1_nuka_caps",
+      "name": "Nuka Caps",
+      "wave": 1,
+      "productType": "accessories",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [],
+        "cards": []
+      }
+    },
+
     {
       "id": "w1_nuka_girl",
       "name": "Nuka-Cola Girl",
@@ -188,9 +214,153 @@
         "cards": []
       }
     },
+
+    {
+      "id": "w1_zetan",
+      "name": "Zetan",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "alien_zetan"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_survivors_core_box",
+      "name": "Survivors Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "mama_murphy",
+          "preston_garvey",
+          "ronnie_shaw",
+          "sturges",
+          "settler_m",
+          "settler_f",
+          "scavenger_m",
+          "scavenger_f"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_heroes_of_sanctuary_hills",
+      "name": "Heroes of Sanctuary Hills",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "sole_survivor_male",
+          "dogmeat_with_goggles",
+          "codsworth"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_boston_companions",
+      "name": "Boston Companions",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "x6_88_courser",
+          "piper",
+          "cait"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_minutemen",
+      "name": "Minutemen",
+      "wave": 1,
+      "productType": "accessories",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "minuteman_1",
+          "minuteman_2",
+          "minuteman_3",
+          "minuteman_4"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_super_mutants_code_box",
+      "name": "Super Mutants Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "master",
+          "brute_2",
+          "super_mutant_2",
+          "super_mutant_3",
+          "super_mutant_4",
+          "mutant_hound_1",
+          "mutant_hound_2"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_hammer",
+      "name": "Hammer",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "hammer",
+          "mutant_hound_2"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_suiciders",
+      "name": "Suiciders",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "suicider",
+          "suicider",
+          "suicider_2"
+        ],
+        "cards": []
+      }
+    },
+
     {
       "id": "w1_behemoth",
-      "name": "Super Mutants Behemoth",
+      "name": "Behemoth",
       "wave": 1,
       "productType": "miniatures",
       "defaultOpen": false,
@@ -238,6 +408,190 @@
         }
       },
 
+      "contents": {
+        "models": [
+          "behemoth"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_brotherhood_of_steel_core_box",
+      "name": "Brotherhood of Steel Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "lancer",
+          "lancer_2",
+          "field_scribe",
+          "field_scribe_2",
+          "knight_patrol",
+          "knight_patrol_2",
+          "paladin"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_cade_and_danse",
+      "name": "Knight-Captain Cade and Paladin Danse",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "knight_captain_cade",
+          "paladin_danse",
+          "eyebot"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_frontline_knights",
+      "name": "Frontline Knights",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "knight",
+          "knight_patrol",
+          "knight_patrol_2",
+          "knight_patrol_3"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_protectron_eyebot",
+      "name": "Protectron & Eyebot",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "protectron",
+          "protectron_2",
+          "eyebot"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_mr_handy",
+      "name": "Mr Handy",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "mr_handy"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_assaultrons",
+      "name": "Assaultrons",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "assaultron",
+          "assaultron_2",
+          "assaultron_3"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_deathclaw",
+      "name": "Deathclaw",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "deathclaw"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_radscorpions",
+      "name": "Radscorpions",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "radscorpion",
+          "radscorpion"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_feral_ghouls",
+      "name": "Feral Ghouls",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "feral_ghoul",
+          "feral_ghoul_2",
+          "feral_ghoul_3"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_radroaches",
+      "name": "Radroaches",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
+      "contents": {
+        "models": [
+          "radroaches",
+          "radroaches",
+          "radroaches",
+          "radroaches",
+          "radroaches",
+          "radroaches"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_red_rocket",
+      "name": "Scenic Set",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{},
       "contents": {
         "models": [],
         "cards": []
