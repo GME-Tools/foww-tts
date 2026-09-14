@@ -368,8 +368,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/heroes_of_sanctuary_hills.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/heroes_of_sanctuary_hills_closed.png",
         "position": {
           "x": -58,
           "y": 1.82,
@@ -421,8 +421,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/boston_companions.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/boston_companions_closed.png",
         "position": {
           "x": -58,
           "y": 1.82,
@@ -468,14 +468,14 @@
 
     {
       "id": "w1_minutemen",
-      "name": "Minutemen",
+      "name": "Minutemen Posse",
       "wave": 1,
-      "productType": "accessories",
+      "productType": "miniatures",
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/minutemen_posse.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/minutemen_posse_closed.png",
         "position": {
           "x": -58,
           "y": 1.82,
@@ -528,8 +528,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box_closed.png",
         "position": {
           "x": 53.5,
           "y": 1.82,
@@ -585,8 +585,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/hammer.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/hammer_closed.png",
         "position": {
           "x": -53.5,
           "y": 1.82,
@@ -637,8 +637,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders_closed.png",
         "position": {
           "x": 53.5,
           "y": 1.82,
@@ -748,8 +748,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/brotherhood_of_steel_core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/brotherhood_of_steel_core_box_closed.png",
         "position": {
           "x": -49,
           "y": 1.82,
@@ -805,8 +805,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/knight_captain_cade_and_paladin_danse.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/knight_captain_cade_and_paladin_danse_closed.png",
         "position": {
           "x": -49,
           "y": 1.82,
@@ -858,8 +858,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/frontline_knights.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/frontline_knights_closed.png",
         "position": {
           "x": -49,
           "y": 1.82,
