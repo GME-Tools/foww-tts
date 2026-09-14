@@ -135,3 +135,12 @@ function fowwArmorySpawnFiltered(
         player.color
     )
 end
+
+function fowwArmoryToggleCollapsed(
+    player,
+    value,
+    id
+)
+
+    App.toggleArmoryCollapsed()
+end

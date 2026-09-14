@@ -294,6 +294,13 @@ function App.resetArmoryFilters()
     )
 end
 
+function App.toggleArmoryCollapsed()
+
+    ArmoryUI.toggleCollapsed(
+        currentPool
+    )
+end
+
 
 --------------------------------------------------
 -- Armory : spawn one model

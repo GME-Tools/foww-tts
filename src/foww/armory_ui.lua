@@ -10,6 +10,7 @@ local filters = {
     faction = ALL_FACTIONS
 }
 
+local collapsed = true
 
 --------------------------------------------------
 -- Helpers
@@ -374,7 +375,7 @@ local function countSpawnable(models)
 end
 
 
-local function buildUI(pool)
+local function buildExpandedUI(pool)
 
     local filtered =
         ArmoryUI.getFilteredModels(
@@ -406,18 +407,65 @@ local function buildUI(pool)
         table.insert(
             rows,
             {
-                tag = "Text",
+                tag = "HorizontalLayout",
 
                 attributes = {
-                    preferredHeight = 40,
-                    fontSize = 15,
-                    color = "#AAAAAA",
-                    alignment = "MiddleCenter"
+                    preferredHeight = 34,
+                    spacing = 8,
+
+                    childForceExpandHeight =
+                        "true",
+
+                    childForceExpandWidth =
+                        "false"
                 },
 
-                value =
-                    "No matching models"
-            }
+                children = {
+
+                    {
+                        tag = "Text",
+
+                        attributes = {
+                            preferredWidth = 350,
+                
+                            fontSize = 22,
+                            fontStyle = "Bold",
+
+                            color = "#FFFFFF",
+
+                            alignment =
+                                "MiddleLeft"
+                        },
+
+                        value =
+                            "FOWW Armory"
+                    },
+
+                    {
+                        tag = "Button",
+
+                        attributes = {
+                            id =
+                                "fowwArmoryCollapse",
+
+                            preferredWidth = 42,
+
+                            fontSize = 20,
+
+                            textColor =
+                                "#FFFFFF",
+
+                            colors =
+                                "#454545|#5A5A5A|#303030|#252525",
+
+                            onClick =
+                                "fowwArmoryToggleCollapsed"
+                        },
+
+                        value = "-"
+                    }
+                }
+            },
         )
     end
 
@@ -734,6 +782,73 @@ local function buildUI(pool)
     }
 end
 
+local function buildCollapsedUI()
+
+    return {
+        {
+            tag = "Panel",
+
+            attributes = {
+                id =
+                    "fowwArmoryCollapsedPanel",
+
+                width = 190,
+                height = 44,
+
+                rectAlignment =
+                    "UpperRight",
+
+                offsetXY =
+                    "-20 -20",
+
+                color =
+                    "#202020EE"
+            },
+
+            children = {
+
+                {
+                    tag = "Button",
+
+                    attributes = {
+                        id =
+                            "fowwArmoryExpand",
+
+                        width = 174,
+                        height = 32,
+
+                        rectAlignment =
+                            "MiddleCenter",
+
+                        fontSize = 17,
+
+                        textColor =
+                            "#FFFFFF",
+
+                        colors =
+                            "#353535|#4A4A4A|#2A2A2A|#252525",
+
+                        onClick =
+                            "fowwArmoryToggleCollapsed"
+                    },
+
+                    value =
+                        "FOWW Armory  >"
+                }
+            }
+        }
+    }
+end
+
+
+local function buildUI(pool)
+
+    if collapsed then
+        return buildCollapsedUI()
+    end
+
+    return buildExpandedUI(pool)
+end
 
 --------------------------------------------------
 -- Public UI API
@@ -791,6 +906,18 @@ function ArmoryUI.resetFilters(pool)
         ALL_FACTIONS
 
     ArmoryUI.refresh(pool)
+end
+
+function ArmoryUI.toggleCollapsed(
+    pool
+)
+
+    collapsed =
+        not collapsed
+
+    ArmoryUI.refresh(
+        pool
+    )
 end
 
 
