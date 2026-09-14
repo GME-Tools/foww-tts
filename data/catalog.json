@@ -44,12 +44,12 @@
         },
 
         "scale": {
-          "x": 4.8,
+          "x": 5,
           "y": 1.0,
-          "z": 4.8
+          "z": 5
         },
 
-        "thickness": 1.0,
+        "thickness": 1.6,
         "locked": true,
 
         "openButton": {
@@ -323,11 +323,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.97,
           "y": 1,
-          "z": 1
+          "z": 1.97
         },
-        "thickness": 0.5,
+        "thickness": 0.6,
         "locked": true,
 
         "openButton": {
