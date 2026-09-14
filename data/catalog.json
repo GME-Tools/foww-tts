@@ -32,9 +32,9 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/starter_set_closed.png",
 
         "position": {
-          "x": -55,
+          "x": -57,
           "y": 1.82,
-          "z": 58.5
+          "z": 60
         },
 
         "rotation": {
@@ -44,12 +44,12 @@
         },
 
         "scale": {
-          "x": 5,
+          "x": 3,
           "y": 1.0,
-          "z": 5
+          "z": 3
         },
 
-        "thickness": 1.6,
+        "thickness": 1.0,
         "locked": true,
 
         "openButton": {
@@ -102,7 +102,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/settlement_deck_closed.png",
 
         "position": {
-          "x": -59,
+          "x": 0,
           "y": 1.82,
           "z": 52
         },
@@ -155,7 +155,7 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": -57,
+          "x": 0,
           "y": 1.82,
           "z": 52
         },
@@ -207,7 +207,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl_closed.jpg",
 
         "position": {
-          "x": -54.5,
+          "x": 0,
           "y": 1.82,
           "z": 52
         },
@@ -313,9 +313,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box_closed.png",
         "position": {
-          "x": 0,
+          "x": -58,
           "y": 1.82,
-          "z": 50
+          "z": 54.5
         },
         "rotation": {
           "x": 0,
@@ -323,11 +323,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.97,
+          "x": 1.5,
           "y": 1,
-          "z": 1.97
+          "z": 1.5
         },
-        "thickness": 0.6,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -371,9 +371,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -58,
           "y": 1.82,
-          "z": 50
+          "z": 51
         },
         "rotation": {
           "x": 0,
@@ -381,11 +381,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -424,9 +424,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -58,
           "y": 1.82,
-          "z": 50
+          "z": 47.5
         },
         "rotation": {
           "x": 0,
@@ -434,11 +434,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -477,9 +477,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -58,
           "y": 1.82,
-          "z": 50
+          "z": 44
         },
         "rotation": {
           "x": 0,
@@ -487,11 +487,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -521,7 +521,7 @@
     },
 
     {
-      "id": "w1_super_mutants_code_box",
+      "id": "w1_super_mutants_core_box",
       "name": "Super Mutants Core Box",
       "wave": 1,
       "productType": "miniatures",
@@ -531,9 +531,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": 53.5,
           "y": 1.82,
-          "z": 50
+          "z": 54.5
         },
         "rotation": {
           "x": 0,
@@ -541,11 +541,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -588,9 +588,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -53.5,
           "y": 1.82,
-          "z": 50
+          "z": 51
         },
         "rotation": {
           "x": 0,
@@ -598,11 +598,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -640,9 +640,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": 53.5,
           "y": 1.82,
-          "z": 50
+          "z": 47.5
         },
         "rotation": {
           "x": 0,
@@ -650,11 +650,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -696,7 +696,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.jpg",
 
         "position": {
-          "x": -51.5,
+          "x": 0,
           "y": 1.82,
           "z": 52
         },
@@ -751,9 +751,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -49,
           "y": 1.82,
-          "z": 50
+          "z": 54.5
         },
         "rotation": {
           "x": 0,
@@ -761,11 +761,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -808,9 +808,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -49,
           "y": 1.82,
-          "z": 50
+          "z": 51
         },
         "rotation": {
           "x": 0,
@@ -818,11 +818,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
@@ -861,9 +861,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -49,
           "y": 1.82,
-          "z": 50
+          "z": 47.5
         },
         "rotation": {
           "x": 0,
@@ -871,11 +871,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.5,
           "y": 1,
-          "z": 1
+          "z": 1.5
         },
-        "thickness": 0.5,
+        "thickness": 0.75,
         "locked": true,
 
         "openButton": {
