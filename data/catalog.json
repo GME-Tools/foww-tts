@@ -150,7 +150,9 @@
       "wave": 1,
       "productType": "accessories",
       "defaultOpen": false,
-
+      "box":{
+        "kind": "tile"
+      },
       "contents": {
         "models": [],
         "cards": []
