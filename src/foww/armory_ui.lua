@@ -10,7 +10,9 @@ local filters = {
     faction = ALL_FACTIONS
 }
 
+
 local collapsed = true
+
 
 --------------------------------------------------
 -- Helpers
@@ -138,6 +140,7 @@ function ArmoryUI.getFilteredModels(pool)
             local factionB =
                 modelFaction(b)
 
+
             if factionA ~= factionB then
                 return factionA < factionB
             end
@@ -155,6 +158,10 @@ function ArmoryUI.getFilteredModels(pool)
 end
 
 
+--------------------------------------------------
+-- Available factions
+--------------------------------------------------
+
 local function getFactions(pool)
 
     local seen = {}
@@ -170,10 +177,12 @@ local function getFactions(pool)
             local faction =
                 modelFaction(model)
 
+
             if not seen[faction] then
 
                 seen[faction] =
                     true
+
 
                 table.insert(
                     result,
@@ -192,7 +201,7 @@ end
 
 
 --------------------------------------------------
--- UI construction
+-- Faction dropdown
 --------------------------------------------------
 
 local function buildFactionOptions(pool)
@@ -250,6 +259,10 @@ local function buildFactionOptions(pool)
 end
 
 
+--------------------------------------------------
+-- Model row
+--------------------------------------------------
+
 local function buildModelRow(model)
 
     local spawnable =
@@ -263,20 +276,33 @@ local function buildModelRow(model)
         attributes = {
             preferredHeight = 42,
             spacing = 8,
-            childForceExpandHeight = "true",
-            childForceExpandWidth = "false"
+
+            childForceExpandHeight =
+                "true",
+
+            childForceExpandWidth =
+                "false"
         },
 
         children = {
+
+            --------------------------------------------------
+            -- Name
+            --------------------------------------------------
 
             {
                 tag = "Text",
 
                 attributes = {
                     preferredWidth = 205,
+
                     fontSize = 15,
-                    color = "#FFFFFF",
-                    alignment = "MiddleLeft"
+
+                    color =
+                        "#FFFFFF",
+
+                    alignment =
+                        "MiddleLeft"
                 },
 
                 value =
@@ -284,19 +310,34 @@ local function buildModelRow(model)
                     or model.id
             },
 
+
+            --------------------------------------------------
+            -- Faction
+            --------------------------------------------------
+
             {
                 tag = "Text",
 
                 attributes = {
                     preferredWidth = 95,
+
                     fontSize = 12,
-                    color = "#B8B8B8",
-                    alignment = "MiddleLeft"
+
+                    color =
+                        "#B8B8B8",
+
+                    alignment =
+                        "MiddleLeft"
                 },
 
                 value =
                     modelFaction(model)
             },
+
+
+            --------------------------------------------------
+            -- Spawn button
+            --------------------------------------------------
 
             {
                 tag = "Button",
@@ -335,6 +376,10 @@ local function buildModelRow(model)
 end
 
 
+--------------------------------------------------
+-- Counters
+--------------------------------------------------
+
 local function countModels(pool)
 
     local count = 0
@@ -365,6 +410,7 @@ local function countSpawnable(models)
         in ipairs(models) do
 
         if model.asset ~= nil then
+
             count =
                 count + 1
         end
@@ -374,6 +420,10 @@ local function countSpawnable(models)
     return count
 end
 
+
+--------------------------------------------------
+-- Expanded UI
+--------------------------------------------------
 
 local function buildExpandedUI(pool)
 
@@ -392,6 +442,10 @@ local function buildExpandedUI(pool)
     local rows = {}
 
 
+    --------------------------------------------------
+    -- Build model rows
+    --------------------------------------------------
+
     for _, model
         in ipairs(filtered) do
 
@@ -402,76 +456,38 @@ local function buildExpandedUI(pool)
     end
 
 
+    --------------------------------------------------
+    -- Empty result
+    --------------------------------------------------
+
     if #rows == 0 then
 
         table.insert(
             rows,
             {
-                tag = "HorizontalLayout",
+                tag = "Text",
 
                 attributes = {
-                    preferredHeight = 34,
-                    spacing = 8,
+                    preferredHeight = 40,
 
-                    childForceExpandHeight =
-                        "true",
+                    fontSize = 15,
 
-                    childForceExpandWidth =
-                        "false"
+                    color =
+                        "#AAAAAA",
+
+                    alignment =
+                        "MiddleCenter"
                 },
 
-                children = {
-
-                    {
-                        tag = "Text",
-
-                        attributes = {
-                            preferredWidth = 350,
-                
-                            fontSize = 22,
-                            fontStyle = "Bold",
-
-                            color = "#FFFFFF",
-
-                            alignment =
-                                "MiddleLeft"
-                        },
-
-                        value =
-                            "FOWW Armory"
-                    },
-
-                    {
-                        tag = "Button",
-
-                        attributes = {
-                            id =
-                                "fowwArmoryCollapse",
-
-                            preferredWidth = 42,
-
-                            fontSize = 20,
-
-                            textColor =
-                                "#FFFFFF",
-
-                            colors =
-                                "#454545|#5A5A5A|#303030|#252525",
-
-                            onClick =
-                                "fowwArmoryToggleCollapsed"
-                        },
-
-                        value = "-"
-                    }
-                }
-            },
+                value =
+                    "No matching models"
+            }
         )
     end
 
 
     --------------------------------------------------
-    -- Scroll content needs an explicit preferred size.
+    -- Scroll content height
     --------------------------------------------------
 
     local contentHeight =
@@ -480,6 +496,10 @@ local function buildExpandedUI(pool)
             #rows * 44
         )
 
+
+    --------------------------------------------------
+    -- Root panel
+    --------------------------------------------------
 
     return {
         {
@@ -496,7 +516,7 @@ local function buildExpandedUI(pool)
                     "UpperRight",
 
                 offsetXY =
-                    "-20 -20",
+                    "-160 -10",
 
                 color =
                     "#202020EE"
@@ -523,38 +543,96 @@ local function buildExpandedUI(pool)
 
                     children = {
 
-                        ----------------------------------
-                        -- Title
-                        ----------------------------------
+                        --------------------------------------------------
+                        -- Header
+                        --------------------------------------------------
 
                         {
-                            tag = "Text",
+                            tag =
+                                "HorizontalLayout",
 
                             attributes = {
-                                preferredHeight = 30,
-                                fontSize = 22,
-                                fontStyle = "Bold",
-                                color = "#FFFFFF",
-                                alignment = "MiddleCenter"
+                                preferredHeight = 34,
+
+                                spacing = 8,
+
+                                childForceExpandHeight =
+                                    "true",
+
+                                childForceExpandWidth =
+                                    "false"
                             },
 
-                            value =
-                                "FOWW Armory"
+                            children = {
+
+                                {
+                                    tag = "Text",
+
+                                    attributes = {
+                                        preferredWidth = 350,
+
+                                        fontSize = 22,
+
+                                        fontStyle =
+                                            "Bold",
+
+                                        color =
+                                            "#FFFFFF",
+
+                                        alignment =
+                                            "MiddleLeft"
+                                    },
+
+                                    value =
+                                        "FOWW Armory"
+                                },
+
+
+                                {
+                                    tag = "Button",
+
+                                    attributes = {
+                                        id =
+                                            "fowwArmoryCollapse",
+
+                                        preferredWidth = 42,
+
+                                        fontSize = 20,
+
+                                        textColor =
+                                            "#FFFFFF",
+
+                                        colors =
+                                            "#454545|#5A5A5A|#303030|#252525",
+
+                                        onClick =
+                                            "fowwArmoryToggleCollapsed"
+                                    },
+
+                                    value =
+                                        "-"
+                                }
+                            }
                         },
 
 
-                        ----------------------------------
+                        --------------------------------------------------
                         -- Status
-                        ----------------------------------
+                        --------------------------------------------------
 
                         {
                             tag = "Text",
 
                             attributes = {
                                 preferredHeight = 22,
+
                                 fontSize = 13,
-                                color = "#B8B8B8",
-                                alignment = "MiddleCenter"
+
+                                color =
+                                    "#B8B8B8",
+
+                                alignment =
+                                    "MiddleCenter"
                             },
 
                             value =
@@ -569,9 +647,9 @@ local function buildExpandedUI(pool)
                         },
 
 
-                        ----------------------------------
+                        --------------------------------------------------
                         -- Filters
-                        ----------------------------------
+                        --------------------------------------------------
 
                         {
                             tag =
@@ -579,14 +657,21 @@ local function buildExpandedUI(pool)
 
                             attributes = {
                                 preferredHeight = 36,
+
                                 spacing = 8,
+
                                 childForceExpandWidth =
                                     "false",
+
                                 childForceExpandHeight =
                                     "true"
                             },
 
                             children = {
+
+                                --------------------------------------------------
+                                -- Search
+                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -617,6 +702,11 @@ local function buildExpandedUI(pool)
                                             "fowwArmorySearchChanged"
                                     }
                                 },
+
+
+                                --------------------------------------------------
+                                -- Faction filter
+                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -656,9 +746,9 @@ local function buildExpandedUI(pool)
                         },
 
 
-                        ----------------------------------
+                        --------------------------------------------------
                         -- Model list
-                        ----------------------------------
+                        --------------------------------------------------
 
                         {
                             tag =
@@ -702,9 +792,9 @@ local function buildExpandedUI(pool)
                         },
 
 
-                        ----------------------------------
+                        --------------------------------------------------
                         -- Actions
-                        ----------------------------------
+                        --------------------------------------------------
 
                         {
                             tag =
@@ -712,14 +802,21 @@ local function buildExpandedUI(pool)
 
                             attributes = {
                                 preferredHeight = 38,
+
                                 spacing = 8,
+
                                 childForceExpandHeight =
                                     "true",
+
                                 childForceExpandWidth =
                                     "true"
                             },
 
                             children = {
+
+                                --------------------------------------------------
+                                -- Spawn filtered
+                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -749,6 +846,11 @@ local function buildExpandedUI(pool)
                                     value =
                                         "Spawn filtered"
                                 },
+
+
+                                --------------------------------------------------
+                                -- Reset filters
+                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -782,6 +884,11 @@ local function buildExpandedUI(pool)
     }
 end
 
+
+--------------------------------------------------
+-- Collapsed UI
+--------------------------------------------------
+
 local function buildCollapsedUI()
 
     return {
@@ -799,7 +906,7 @@ local function buildCollapsedUI()
                     "UpperRight",
 
                 offsetXY =
-                    "-20 -20",
+                    "-400 -10",
 
                 color =
                     "#202020EE"
@@ -841,14 +948,23 @@ local function buildCollapsedUI()
 end
 
 
+--------------------------------------------------
+-- Select UI state
+--------------------------------------------------
+
 local function buildUI(pool)
 
     if collapsed then
+
         return buildCollapsedUI()
     end
 
-    return buildExpandedUI(pool)
+
+    return buildExpandedUI(
+        pool
+    )
 end
+
 
 --------------------------------------------------
 -- Public UI API
@@ -860,6 +976,7 @@ function ArmoryUI.mount(pool)
         buildUI(pool)
     )
 
+
     print(
         "[FOWW] Armory UI mounted"
     )
@@ -868,9 +985,15 @@ end
 
 function ArmoryUI.refresh(pool)
 
-    ArmoryUI.mount(pool)
+    ArmoryUI.mount(
+        pool
+    )
 end
 
+
+--------------------------------------------------
+-- Search
+--------------------------------------------------
 
 function ArmoryUI.setSearch(
     value,
@@ -880,9 +1003,16 @@ function ArmoryUI.setSearch(
     filters.search =
         value or ""
 
-    ArmoryUI.refresh(pool)
+
+    ArmoryUI.refresh(
+        pool
+    )
 end
 
+
+--------------------------------------------------
+-- Faction
+--------------------------------------------------
 
 function ArmoryUI.setFaction(
     value,
@@ -893,9 +1023,16 @@ function ArmoryUI.setFaction(
         value
         or ALL_FACTIONS
 
-    ArmoryUI.refresh(pool)
+
+    ArmoryUI.refresh(
+        pool
+    )
 end
 
+
+--------------------------------------------------
+-- Reset filters
+--------------------------------------------------
 
 function ArmoryUI.resetFilters(pool)
 
@@ -905,8 +1042,16 @@ function ArmoryUI.resetFilters(pool)
     filters.faction =
         ALL_FACTIONS
 
-    ArmoryUI.refresh(pool)
+
+    ArmoryUI.refresh(
+        pool
+    )
 end
+
+
+--------------------------------------------------
+-- Collapse / expand
+--------------------------------------------------
 
 function ArmoryUI.toggleCollapsed(
     pool
@@ -914,6 +1059,7 @@ function ArmoryUI.toggleCollapsed(
 
     collapsed =
         not collapsed
+
 
     ArmoryUI.refresh(
         pool

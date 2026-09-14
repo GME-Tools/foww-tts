@@ -11,6 +11,10 @@ function onSave()
 end
 
 
+--------------------------------------------------
+-- Products
+--------------------------------------------------
+
 function fowwOpenProduct(
     object,
     player_color,
@@ -35,15 +39,6 @@ function fowwSetProductState(
         object,
         player_color,
         opened
-    )
-end
-
-
-function fowwSpawnModel(modelId)
-
-    return App.spawnModel(
-        modelId,
-        {x = 0, y = 3, z = 8}
     )
 end
 
@@ -135,6 +130,7 @@ function fowwArmorySpawnFiltered(
         player.color
     )
 end
+
 
 function fowwArmoryToggleCollapsed(
     player,

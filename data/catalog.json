@@ -102,7 +102,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/settlement_deck_closed.png",
 
         "position": {
-          "x": -60,
+          "x": -59,
           "y": 1.82,
           "z": 52
         },
@@ -114,7 +114,7 @@
         },
 
         "scale": {
-          "x": 1.14,
+          "x": 1.26,
           "y": 1.0,
           "z": 1.26
         },
@@ -155,9 +155,9 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
         "position": {
-          "x": 0,
+          "x": -57,
           "y": 1.82,
-          "z": 50
+          "z": 52
         },
         "rotation": {
           "x": 0,
@@ -165,9 +165,9 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.26,
           "y": 1,
-          "z": 1
+          "z": 1.26
         },
         "thickness": 0.5,
         "locked": true,
@@ -207,7 +207,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl_closed.jpg",
 
         "position": {
-          "x": -57.5,
+          "x": -54.5,
           "y": 1.82,
           "z": 52
         },
@@ -219,7 +219,7 @@
         },
 
         "scale": {
-          "x": 1.24,
+          "x": 1.26,
           "y": 1.0,
           "z": 1.26
         },
@@ -310,8 +310,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box_closed.png",
         "position": {
           "x": 0,
           "y": 1.82,
@@ -696,7 +696,7 @@
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.jpg",
 
         "position": {
-          "x": -54.5,
+          "x": -51.5,
           "y": 1.82,
           "z": 52
         },
@@ -708,7 +708,7 @@
         },
 
         "scale": {
-          "x": 1.24,
+          "x": 1.26,
           "y": 1.0,
           "z": 1.26
         },
