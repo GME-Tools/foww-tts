@@ -114,12 +114,12 @@
         },
 
         "scale": {
-          "x": 1.26,
+          "x": 0.66,
           "y": 1.0,
-          "z": 1.26
+          "z": 0.66
         },
 
-        "thickness": 0.5,
+        "thickness": 0.45,
         "locked": true,
 
         "openButton": {
@@ -134,7 +134,7 @@
                 "z": 0
             },
             "width": 200,
-            "height": 300
+            "height": 130
         }
       },
 
@@ -165,11 +165,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.26,
+          "x": 2.42,
           "y": 1,
-          "z": 1.26
+          "z": 2.42
         },
-        "thickness": 0.5,
+        "thickness": 0.6,
         "locked": true,
 
         "openButton": {
@@ -183,8 +183,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 350,
+            "height": 720
         }
       },
       "contents": {
@@ -219,12 +219,12 @@
         },
 
         "scale": {
-          "x": 1.26,
+          "x": 1.40,
           "y": 1.0,
-          "z": 1.26
+          "z": 1.40
         },
 
-        "thickness": 0.5,
+        "thickness": 0.45,
         "locked": true,
 
         "openButton": {
@@ -238,65 +238,14 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 400,
+            "height": 400
         }
       },
 
       "contents": {
         "models": [
           "nuka_girl"
-        ],
-        "cards": []
-      }
-    },
-
-    {
-      "id": "w1_zetan",
-      "name": "Zetan",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
-          "alien_zetan"
         ],
         "cards": []
       }
@@ -327,7 +276,7 @@
           "y": 1,
           "z": 1.5
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -341,8 +290,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 600,
+            "height": 450
         }
       },
       "contents": {
@@ -381,11 +330,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -399,7 +348,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -434,11 +383,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -452,7 +401,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -487,11 +436,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -505,7 +454,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -531,7 +480,7 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box_closed.png",
         "position": {
-          "x": 53.5,
+          "x": -53.5,
           "y": 1.82,
           "z": 54.5
         },
@@ -545,7 +494,7 @@
           "y": 1,
           "z": 1.5
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -559,8 +508,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 600,
+            "height": 450
         }
       },
       "contents": {
@@ -598,11 +547,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -616,7 +565,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -640,7 +589,7 @@
         "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders.png",
         "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders_closed.png",
         "position": {
-          "x": 53.5,
+          "x": -53.5,
           "y": 1.82,
           "z": 47.5
         },
@@ -650,11 +599,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -668,7 +617,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -708,12 +657,12 @@
         },
 
         "scale": {
-          "x": 1.26,
+          "x": 1.40,
           "y": 1.0,
-          "z": 1.26
+          "z": 1.40
         },
 
-        "thickness": 0.5,
+        "thickness": 0.45,
         "locked": true,
 
         "openButton": {
@@ -727,8 +676,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 400,
+            "height": 400
         }
       },
 
@@ -765,7 +714,7 @@
           "y": 1,
           "z": 1.5
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -779,8 +728,8 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 600,
+            "height": 450
         }
       },
       "contents": {
@@ -818,11 +767,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -836,7 +785,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -871,11 +820,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1.5,
+          "x": 1,
           "y": 1,
-          "z": 1.5
+          "z": 1
         },
-        "thickness": 0.75,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -889,7 +838,7 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
+            "width": 450,
             "height": 300
         }
       },
@@ -905,15 +854,15 @@
     },
 
     {
-      "id": "w1_protectron_eyebot",
-      "name": "Protectron & Eyebot",
+      "id": "w1_robots_core_box",
+      "name": "Robots Core Box",
       "wave": 1,
       "productType": "miniatures",
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box_closed.png",
         "position": {
           "x": 0,
           "y": 1.82,
@@ -925,11 +874,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.7,
           "y": 1,
-          "z": 1
+          "z": 1.7
         },
-        "thickness": 0.5,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -943,134 +892,35 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 650,
+            "height": 500
         }
       },
       "contents": {
         "models": [
           "protectron",
           "protectron_2",
-          "eyebot"
-        ],
-        "cards": []
-      }
-    },
-
-    {
-      "id": "w1_mr_handy",
-      "name": "Mr Handy",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
-          "mr_handy"
-        ],
-        "cards": []
-      }
-    },
-
-    {
-      "id": "w1_assaultrons",
-      "name": "Assaultrons",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
+          "eyebot",
+          "mr_handy",
           "assaultron",
           "assaultron_2",
-          "assaultron_3"
+          "assaultron_3",
+          "sentry_bot"
         ],
         "cards": []
       }
     },
 
     {
-      "id": "w1_deathclaw",
-      "name": "Deathclaw",
+      "id": "w1_creatures_core_box",
+      "name": "Creatures Core Box",
       "wave": 1,
       "productType": "miniatures",
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box_closed.png",
         "position": {
           "x": 0,
           "y": 1.82,
@@ -1082,11 +932,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 1.7,
           "y": 1,
-          "z": 1
+          "z": 1.7
         },
-        "thickness": 0.5,
+        "thickness": 0.3,
         "locked": true,
 
         "openButton": {
@@ -1100,168 +950,20 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 650,
+            "height": 500
         }
       },
       "contents": {
         "models": [
-          "deathclaw"
-        ],
-        "cards": []
-      }
-    },
-    {
-      "id": "w1_radscorpions",
-      "name": "Radscorpions",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
+          "deathclaw",
           "radscorpion",
-          "radscorpion"
-        ],
-        "cards": []
-      }
-    },
-    {
-      "id": "w1_feral_ghouls",
-      "name": "Feral Ghouls",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
+          "feral_ghoul",
           "feral_ghoul",
           "feral_ghoul_2",
-          "feral_ghoul_3"
-        ],
-        "cards": []
-      }
-    },
-    {
-      "id": "w1_radroaches",
-      "name": "Radroaches",
-      "wave": 1,
-      "productType": "miniatures",
-      "defaultOpen": false,
-      "box":{
-        "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
-        "position": {
-          "x": 0,
-          "y": 1.82,
-          "z": 50
-        },
-        "rotation": {
-          "x": 0,
-          "y": 180,
-          "z": 0
-        },
-        "scale": {
-          "x": 1,
-          "y": 1,
-          "z": 1
-        },
-        "thickness": 0.5,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 300,
-            "height": 300
-        }
-      },
-      "contents": {
-        "models": [
-          "radroaches",
-          "radroaches",
-          "radroaches",
+          "feral_ghoul_2",
+          "feral_ghoul_3",
+          "feral_ghoul_3",
           "radroaches",
           "radroaches",
           "radroaches"
@@ -1277,8 +979,8 @@
       "defaultOpen": false,
       "box":{
         "kind": "tile",
-        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
-        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/red_rocket.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/red_rocket_closed.png",
         "position": {
           "x": 0,
           "y": 1.82,
@@ -1290,11 +992,11 @@
           "z": 0
         },
         "scale": {
-          "x": 1,
+          "x": 2.3,
           "y": 1,
-          "z": 1
+          "z": 2.3
         },
-        "thickness": 0.5,
+        "thickness": 0.7,
         "locked": true,
 
         "openButton": {
@@ -1308,12 +1010,73 @@
                 "y": 0,
                 "z": 0
             },
-            "width": 300,
-            "height": 300
+            "width": 900,
+            "height": 650
         }
       },
       "contents": {
         "models": [],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_turrets",
+      "name": "Terrain Expansion: Turrets",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/turrets.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/turrets_closed.png",
+
+        "position": {
+          "x": 0,
+          "y": 1.82,
+          "z": 52
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 1.40,
+          "y": 1.0,
+          "z": 1.40
+        },
+
+        "thickness": 0.45,
+        "locked": true,
+
+        "openButton": {
+            "position": {
+                "x": 0,
+                "y": 0.5,
+                "z": 0
+            },
+            "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "width": 400,
+            "height": 400
+        }
+      },
+
+      "contents": {
+        "models": [
+          "gas_powered_turret",
+          "gas_powered_turret",
+          "laser_turret",
+          "laser_turret"
+        ],
         "cards": []
       }
     }

@@ -458,6 +458,11 @@
       "name": "Assaultron",
       "faction": ""
     },
+    {
+      "id": "sentry_bot",
+      "name": "Sentry Bot",
+      "faction": ""
+    },
 
     {
       "id": "radscorpion",
@@ -484,6 +489,17 @@
     {
       "id": "radroaches",
       "name": "Radroaches",
+      "faction": ""
+    },
+
+    {
+      "id": "gas_powered_turret",
+      "name": "Gas Powered Turret",
+      "faction": ""
+    },
+    {
+      "id": "laser_turret",
+      "name": "Laser Turret",
       "faction": ""
     }
   ]
