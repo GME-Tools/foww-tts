@@ -5,6 +5,10 @@ local PRODUCT_TAG   = "foww-product"
 
 local catalogById = {}
 
+local BUTTON_UNITS_PER_LOCAL_UNIT = 500
+local OPEN_BUTTON_COVERAGE = 0.95
+local OPEN_BUTTON_LIFT = 0.02
+
 
 local function vector(data, default)
 
@@ -16,6 +20,137 @@ local function vector(data, default)
         x = data.x or default.x,
         y = data.y or default.y,
         z = data.z or default.z
+    }
+end
+
+
+local function safeScale(value)
+
+    value = math.abs(value or 1)
+
+    if value < 0.0001 then
+        return 1
+    end
+
+    return value
+end
+
+
+local function getAutomaticOpenButton(object)
+
+    local bounds =
+        object.getBoundsNormalized()
+
+    local scale =
+        object.getScale()
+
+
+    local scaleX =
+        safeScale(scale.x)
+
+    local scaleY =
+        safeScale(scale.y)
+
+    local scaleZ =
+        safeScale(scale.z)
+
+
+    --------------------------------------------------
+    -- Bounds are returned in world-size units.
+    --
+    -- Buttons are attached in the object's local
+    -- coordinate system, so remove object scale.
+    --------------------------------------------------
+
+    local localWidth =
+        bounds.size.x / scaleX
+
+    local localHeight =
+        bounds.size.y / scaleY
+
+    local localDepth =
+        bounds.size.z / scaleZ
+
+
+    local localOffsetX =
+        bounds.offset.x / scaleX
+
+    local localOffsetY =
+        bounds.offset.y / scaleY
+
+    local localOffsetZ =
+        bounds.offset.z / scaleZ
+
+
+    --------------------------------------------------
+    -- Place button just above top surface.
+    --------------------------------------------------
+
+    local position = {
+        x = localOffsetX,
+
+        y =
+            localOffsetY
+            + (localHeight / 2)
+            + OPEN_BUTTON_LIFT,
+
+        z = localOffsetZ
+    }
+
+
+    --------------------------------------------------
+    -- Classic TTS button dimensions use their own
+    -- units. 500 UI units ~= 1 local object unit
+    -- with the default button scale.
+    --------------------------------------------------
+
+    local width =
+        math.floor(
+            localWidth
+            * BUTTON_UNITS_PER_LOCAL_UNIT
+            * OPEN_BUTTON_COVERAGE
+            + 0.5
+        )
+
+
+    local height =
+        math.floor(
+            localDepth
+            * BUTTON_UNITS_PER_LOCAL_UNIT
+            * OPEN_BUTTON_COVERAGE
+            + 0.5
+        )
+
+
+    --------------------------------------------------
+    -- TTS enforces a minimum visible/clickable size
+    -- of 60 for non-zero width/height.
+    --------------------------------------------------
+
+    width =
+        math.max(
+            60,
+            width
+        )
+
+    height =
+        math.max(
+            60,
+            height
+        )
+
+
+    return {
+        position = position,
+
+        rotation = {
+            x = 0,
+            y = 0,
+            z = 0
+        },
+
+        width = width,
+        height = height
     }
 end
 
@@ -295,7 +430,9 @@ function Products.refreshVisual(
         ------------------------------------------------
 
         local button =
-            box.openButton or {}
+            getAutomaticOpenButton(
+                object
+            )
 
         object.createButton({
 

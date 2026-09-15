@@ -50,22 +50,7 @@
         },
 
         "thickness": 1.0,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 1.0,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 900,
-            "height": 900
-        }
+        "locked": true
       },
 
       "contents": {
@@ -120,22 +105,7 @@
         },
 
         "thickness": 0.45,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 200,
-            "height": 130
-        }
+        "locked": true
       },
 
       "contents": {
@@ -170,22 +140,7 @@
           "z": 2.42
         },
         "thickness": 0.6,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 350,
-            "height": 720
-        }
+        "locked": true
       },
       "contents": {
         "models": [],
@@ -225,22 +180,7 @@
         },
 
         "thickness": 0.45,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 400,
-            "height": 400
-        }
+        "locked": true
       },
 
       "contents": {
@@ -277,22 +217,7 @@
           "z": 1.5
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 600,
-            "height": 450
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -335,22 +260,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -388,22 +298,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -441,22 +336,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -495,22 +375,7 @@
           "z": 1.5
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 600,
-            "height": 450
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -552,22 +417,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -604,22 +454,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -663,22 +498,7 @@
         },
 
         "thickness": 0.45,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 400,
-            "height": 400
-        }
+        "locked": true
       },
 
       "contents": {
@@ -715,22 +535,7 @@
           "z": 1.5
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 600,
-            "height": 450
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -772,22 +577,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -825,22 +615,7 @@
           "z": 1
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 450,
-            "height": 300
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -879,22 +654,7 @@
           "z": 1.7
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 650,
-            "height": 500
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -937,22 +697,7 @@
           "z": 1.7
         },
         "thickness": 0.3,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 650,
-            "height": 500
-        }
+        "locked": true
       },
       "contents": {
         "models": [
@@ -997,22 +742,7 @@
           "z": 2.3
         },
         "thickness": 0.7,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 900,
-            "height": 650
-        }
+        "locked": true
       },
       "contents": {
         "models": [],
@@ -1052,22 +782,7 @@
         },
 
         "thickness": 0.45,
-        "locked": true,
-
-        "openButton": {
-            "position": {
-                "x": 0,
-                "y": 0.5,
-                "z": 0
-            },
-            "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 0
-            },
-            "width": 400,
-            "height": 400
-        }
+        "locked": true
       },
 
       "contents": {
