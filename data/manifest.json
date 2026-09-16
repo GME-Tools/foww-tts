@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "manifestVersion": "0.1.0",
+
+  "resources": [
+    {
+      "kind": "products",
+      "src": "catalog.json"
+    },
+    {
+      "kind": "models",
+      "src": "models.json"
+    }
+  ]
+}
