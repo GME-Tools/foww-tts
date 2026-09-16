@@ -54,8 +54,18 @@
           "deathclaw",
           "alien_zetan"
         ],
-        "cards": []
+        "cards": [
+          "ai_sole_survivor",
+          "ai_sole_survivor_day_one",
+          "ai_dogmeat",
+          "ai_brute",
+          "ai_aviator",
+          "ai_super_mutant",
+          "ai_mutant_hound",
+          "ai_deathclaw"
+        ]
       }
     }
   ]
 }
+

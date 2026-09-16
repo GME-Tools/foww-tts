@@ -41,7 +41,11 @@
           "mutant_hound_1",
           "mutant_hound_2"
         ],
-        "cards": []
+        "cards": [
+          "ai_brute",
+          "ai_mutant_hound",
+          "ai_super_mutant"
+        ]
       }
     },
 
