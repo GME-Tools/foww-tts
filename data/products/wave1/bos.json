@@ -41,7 +41,12 @@
           "knight_patrol_2",
           "paladin"
         ],
-        "cards": []
+        "cards": [
+          "ai_lancer",
+          "ai_field_scribe",
+          "ai_knight_patrol",
+          "ai_paladin"
+        ]
       }
     },
 
@@ -79,7 +84,11 @@
           "paladin_danse",
           "eyebot"
         ],
-        "cards": []
+        "cards": [
+          "ai_knight_captain_cade",
+          "ai_paladin_danse",
+          "ai_eyebot"
+        ]
       }
     },
 
@@ -118,7 +127,10 @@
           "knight_patrol_2",
           "knight_patrol_3"
         ],
-        "cards": []
+        "cards": [
+          "ai_knight",
+          "ai_knight_patrol_blade"
+        ]
       }
     }
   ]

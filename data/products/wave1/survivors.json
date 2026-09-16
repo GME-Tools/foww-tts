@@ -42,7 +42,13 @@
           "scavenger_m",
           "scavenger_f"
         ],
-        "cards": []
+        "cards": [
+          "ai_mama_murphy",
+          "ai_preston_garvey",
+          "ai_ronnie_shaw",
+          "ai_sturges",
+          "ai_scavenger"
+        ]
       }
     },
     {
@@ -79,7 +85,11 @@
           "dogmeat_with_goggles",
           "codsworth"
         ],
-        "cards": []
+        "cards": [
+          "ai_sole_survivor_loner",
+          "ai_dogmeat_scout",
+          "ai_codsworth"
+        ]
       }
     },
     {
@@ -116,7 +126,11 @@
           "piper",
           "cait"
         ],
-        "cards": []
+        "cards": [
+          "ai_x6_88_courser",
+          "ai_piper",
+          "ai_cait"
+        ]
       }
     },
     {
@@ -154,7 +168,9 @@
           "minuteman_3",
           "minuteman_4"
         ],
-        "cards": []
+        "cards": [
+          "ai_minuteman"
+        ]
       }
     },
     {
@@ -196,7 +212,9 @@
         "models": [
           "nuka_girl"
         ],
-        "cards": []
+        "cards": [
+          "ai_nuka_girl"
+        ]
       }
     }
   ]

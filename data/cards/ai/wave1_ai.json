@@ -79,6 +79,272 @@
       "type": "ai",
       "atlas": "wave1_ai_deck",
       "slot": 7
+    },
+    {
+      "id": "ai_aspirant_goddard",
+      "name": "Aspirant Goddard",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 8
+    },
+    {
+      "id": "ai_enslaved tech",
+      "name": "Enslaved Tech",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 9
+    },
+    {
+      "id": "ai_settler",
+      "name": "Settler",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 10
+    },
+    {
+      "id": "ai_alien",
+      "name": "Alien",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 11
+    },
+    {
+      "id": "ai_scavenger",
+      "name": "Scavenger",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 12
+    },
+    {
+      "id": "ai_ronnie_shaw",
+      "name": "Ronnie Shaw",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 13
+    },
+    {
+      "id": "ai_mama_murphy",
+      "name": "Mama Murphy",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 14
+    },
+    {
+      "id": "ai_preston_garvey",
+      "name": "Preston Garvey",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 15
+    },
+    {
+      "id": "ai_sturges",
+      "name": "Sturges",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 16
+    },
+    {
+      "id": "ai_paladin",
+      "name": "Paladin",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 17
+    },
+    {
+      "id": "ai_field_scribe",
+      "name": "Field Scribe",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 18
+    },
+    {
+      "id": "ai_lancer",
+      "name": "Lancer",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 19
+    },
+    {
+      "id": "ai_knight_patrol",
+      "name": "Knight Patrol",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 20
+    },
+    {
+      "id": "ai_master",
+      "name": "Master",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 21
+    },
+    {
+      "id": "ai_eyebot",
+      "name": "Eyebot",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 22
+    },
+    {
+      "id": "ai_knight_captain_cade",
+      "name": "Knight-Captain Cade",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 23
+    },
+    {
+      "id": "ai_paladin_danse",
+      "name": "Paladin Danse",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 24
+    },
+    {
+      "id": "ai_knight_patrol_blade",
+      "name": "Knight Patrol (Blade)",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 25
+    },
+    {
+      "id": "ai_knight",
+      "name": "Knight",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 26
+    },
+    {
+      "id": "ai_hammer",
+      "name": "Hammer",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 27
+    },
+    {
+      "id": "ai_mutant_hound_fiend",
+      "name": "Mutant Hound Fiend",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 28
+    },
+    {
+      "id": "ai_behemoth",
+      "name": "Behemoth",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 29
+    },
+    {
+      "id": "ai_suicider",
+      "name": "Suicider",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 30
+    },
+    {
+      "id": "ai_dogmeat_scout",
+      "name": "Dogmeat Scout",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 31
+    },
+    {
+      "id": "ai_sole_survivor_loner",
+      "name": "Sole Survivor Loner",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 32
+    },
+    {
+      "id": "ai_codsworth",
+      "name": "Codsworth",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 33
+    },
+    {
+      "id": "ai_x6_88_courser",
+      "name": "X6-88 Courser",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 34
+    },
+    {
+      "id": "ai_piper",
+      "name": "Piper",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 35
+    },
+    {
+      "id": "ai_cait",
+      "name": "Cait",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 36
+    },
+    {
+      "id": "ai_minuteman",
+      "name": "Minuteman",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 37
+    },
+    {
+      "id": "ai_protectron",
+      "name": "Protectron",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 38
+    },
+    {
+      "id": "ai_sentry_bot",
+      "name": "Sentry Bot",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 39
+    },
+    {
+      "id": "ai_assaultron",
+      "name": "Assaultron",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 40
+    },
+    {
+      "id": "ai_mr_handy",
+      "name": "Mr Handy",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 41
+    },
+    {
+      "id": "ai_feral_ghoul",
+      "name": "Feral Ghoul",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 42
+    },
+    {
+      "id": "ai_radscorpion",
+      "name": "Radscorpion",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 43
+    },
+    {
+      "id": "ai_radroach_swarm",
+      "name": "Radroach Swarm",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 44
+    },
+    {
+      "id": "ai_nuka_girl",
+      "name": "Nuka-Girl",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 45
     }
   ]
 }
