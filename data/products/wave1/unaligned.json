@@ -42,7 +42,13 @@
           "assaultron_3",
           "sentry_bot"
         ],
-        "cards": []
+        "cards": [
+          "ai_protectron",
+          "ai_eyebot",
+          "ai_sentry_bot",
+          "ai_assaultron",
+          "ai_mr_handy"
+        ]
       }
     },
 
@@ -89,7 +95,10 @@
           "radroaches"
         ],
         "cards": [
-          "ai_deathclaw"
+          "ai_deathclaw",
+          "ai_feral_ghoul",
+          "ai_radscorpion",
+          "ai_radroach_swarm"
         ]
       }
     }

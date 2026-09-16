@@ -88,7 +88,7 @@
       "slot": 8
     },
     {
-      "id": "ai_enslaved tech",
+      "id": "ai_enslaved_tech",
       "name": "Enslaved Tech",
       "type": "ai",
       "atlas": "wave1_ai_deck",
