@@ -16,6 +16,9 @@ local Armory =
 local ArmoryUI =
     require("foww.armory_ui")
 
+local DeckBuilder =
+    require("foww.deck_builder")
+
 
 local App = {}
 
@@ -41,6 +44,33 @@ local function getArmoryLayout()
 
     return
         currentRegistry.layout.armory
+end
+
+
+local function getCardsSpawnPosition()
+
+    if currentRegistry ~= nil
+        and currentRegistry.layout ~= nil
+        and currentRegistry.layout.cards ~= nil
+        and currentRegistry.layout.cards.spawn ~= nil then
+
+        local position =
+            currentRegistry.layout.cards.spawn
+
+
+        return {
+            x = position.x,
+            y = position.y,
+            z = position.z
+        }
+    end
+
+
+    return {
+        x = 0,
+        y = 3,
+        z = 0
+    }
 end
 
 
@@ -102,10 +132,7 @@ local function rebuildPool()
 
 
     --------------------------------------------------
-    -- Pool changed -> Armory UI changes immediately.
-    --
-    -- Armory currently only uses pool.models.
-    -- pool.cards is ignored by the UI for now.
+    -- Refresh UI
     --------------------------------------------------
 
     ArmoryUI.refresh(
@@ -126,7 +153,7 @@ function App.onLoad(saved_data)
 
 
     --------------------------------------------------
-    -- UI initially displays an empty/loading pool.
+    -- UI initially displays loading/empty pool.
     --------------------------------------------------
 
     ArmoryUI.mount(
@@ -144,7 +171,7 @@ function App.onLoad(saved_data)
 
 
     --------------------------------------------------
-    -- Load registries
+    -- Load registry
     --------------------------------------------------
 
     Registry.load(
@@ -384,7 +411,7 @@ end
 
 
 --------------------------------------------------
--- Armory : spawn current filtered selection
+-- Armory : spawn filtered models
 --------------------------------------------------
 
 function App.spawnArmoryFiltered(
@@ -427,6 +454,138 @@ function App.spawnArmoryFiltered(
 
 
     return spawned
+end
+
+
+--------------------------------------------------
+-- Cards : spawn all currently available cards
+--------------------------------------------------
+
+function App.spawnAvailableCards(
+    playerColor
+)
+
+    if currentRegistry == nil
+        or currentPool == nil then
+
+        print(
+            "[FOWW] Cannot spawn cards: "
+            .. "registry/pool not ready"
+        )
+
+        return nil
+    end
+
+
+    local cards = {}
+
+
+    for _, card
+        in pairs(
+            currentPool.cards
+            or {}
+        ) do
+
+        table.insert(
+            cards,
+            card
+        )
+    end
+
+
+    if #cards == 0 then
+
+        if playerColor ~= nil then
+
+            broadcastToColor(
+                "No cards currently available",
+
+                playerColor,
+
+                {1.0, 0.7, 0.4}
+            )
+        end
+
+
+        return nil
+    end
+
+
+    --------------------------------------------------
+    -- Build and spawn deck
+    --------------------------------------------------
+
+    local object,
+        spawnError =
+        DeckBuilder.spawn(
+            cards,
+            currentRegistry.atlasesById,
+
+            {
+                name =
+                    "FOWW Available Cards",
+
+                position =
+                    getCardsSpawnPosition()
+            }
+        )
+
+
+    if object == nil then
+
+        print(
+            "[FOWW] Could not spawn cards: "
+            .. tostring(
+                spawnError
+            )
+        )
+
+
+        if playerColor ~= nil then
+
+            broadcastToColor(
+                "Could not spawn cards: "
+                .. tostring(
+                    spawnError
+                ),
+
+                playerColor,
+
+                {1.0, 0.4, 0.4}
+            )
+        end
+
+
+        return nil
+    end
+
+
+    print(
+        "[FOWW] Spawned card deck: "
+        .. tostring(
+            #cards
+        )
+        .. " card(s)"
+    )
+
+
+    if playerColor ~= nil then
+
+        broadcastToColor(
+            "Spawned "
+            .. tostring(
+                #cards
+            )
+            .. " available card(s)",
+
+            playerColor,
+
+            {0.6, 1.0, 0.6}
+        )
+    end
+
+
+    return object
 end
 
 

@@ -1,12 +1,21 @@
-local App = require("foww.app")
+local App =
+    require("foww.app")
 
+
+--------------------------------------------------
+-- Lifecycle
+--------------------------------------------------
 
 function onLoad(saved_data)
-    App.onLoad(saved_data)
+
+    App.onLoad(
+        saved_data
+    )
 end
 
 
 function onSave()
+
     return App.onSave()
 end
 
@@ -44,7 +53,7 @@ end
 
 
 --------------------------------------------------
--- Armory UI
+-- Armory UI : filters
 --------------------------------------------------
 
 function fowwArmorySearchChanged(
@@ -80,6 +89,10 @@ function fowwArmoryResetFilters(
     App.resetArmoryFilters()
 end
 
+
+--------------------------------------------------
+-- Armory UI : spawn one
+--------------------------------------------------
 
 function fowwArmorySpawnModel(
     player,
@@ -120,6 +133,10 @@ function fowwArmorySpawnModel(
 end
 
 
+--------------------------------------------------
+-- Armory UI : spawn filtered
+--------------------------------------------------
+
 function fowwArmorySpawnFiltered(
     player,
     value,
@@ -132,6 +149,10 @@ function fowwArmorySpawnFiltered(
 end
 
 
+--------------------------------------------------
+-- Armory UI : collapse
+--------------------------------------------------
+
 function fowwArmoryToggleCollapsed(
     player,
     value,
@@ -139,4 +160,20 @@ function fowwArmoryToggleCollapsed(
 )
 
     App.toggleArmoryCollapsed()
+end
+
+
+--------------------------------------------------
+-- Cards UI
+--------------------------------------------------
+
+function fowwSpawnAvailableCards(
+    player,
+    value,
+    id
+)
+
+    App.spawnAvailableCards(
+        player.color
+    )
 end

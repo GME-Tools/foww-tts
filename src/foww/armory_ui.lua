@@ -11,7 +11,8 @@ local filters = {
 }
 
 
-local collapsed = true
+local collapsed =
+    true
 
 
 --------------------------------------------------
@@ -21,20 +22,73 @@ local collapsed = true
 local function lower(value)
 
     return string.lower(
-        tostring(value or "")
+        tostring(
+            value
+            or ""
+        )
     )
 end
 
 
-local function modelFaction(model)
+local function modelFactions(model)
 
-    if model.faction == nil
-        or model.faction == "" then
+    local faction =
+        model.faction
 
-        return "unassigned"
+
+    if type(faction) == "table" then
+
+        if #faction == 0 then
+
+            return {
+                "unassigned"
+            }
+        end
+
+
+        return faction
     end
 
-    return model.faction
+
+    if faction == nil
+        or faction == "" then
+
+        return {
+            "unassigned"
+        }
+    end
+
+
+    return {
+        tostring(
+            faction
+        )
+    }
+end
+
+
+local function modelFactionDisplay(model)
+
+    return table.concat(
+        modelFactions(
+            model
+        ),
+        ", "
+    )
+end
+
+
+local function modelPrimaryFaction(model)
+
+    local factions =
+        modelFactions(
+            model
+        )
+
+
+    return
+        factions[1]
+        or "unassigned"
 end
 
 
@@ -49,22 +103,30 @@ local function matchesSearch(
 
 
     local needle =
-        lower(search)
+        lower(
+            search
+        )
 
 
     local name =
-        lower(model.name)
+        lower(
+            model.name
+        )
+
 
     local id =
-        lower(model.id)
+        lower(
+            model.id
+        )
 
 
-    return string.find(
-        name,
-        needle,
-        1,
-        true
-    ) ~= nil
+    return
+        string.find(
+            name,
+            needle,
+            1,
+            true
+        ) ~= nil
 
         or
 
@@ -82,13 +144,29 @@ local function matchesFaction(
     faction
 )
 
-    if faction == ALL_FACTIONS then
+    if faction
+        == ALL_FACTIONS then
+
         return true
     end
 
 
-    return modelFaction(model)
-        == faction
+    for _, modelFaction
+        in ipairs(
+            modelFactions(
+                model
+            )
+        ) do
+
+        if modelFaction
+            == faction then
+
+            return true
+        end
+    end
+
+
+    return false
 end
 
 
@@ -96,7 +174,9 @@ end
 -- Public filtering
 --------------------------------------------------
 
-function ArmoryUI.getFilteredModels(pool)
+function ArmoryUI.getFilteredModels(
+    pool
+)
 
     local result = {}
 
@@ -109,7 +189,9 @@ function ArmoryUI.getFilteredModels(pool)
 
 
     for _, model
-        in pairs(pool.models) do
+        in pairs(
+            pool.models
+        ) do
 
         if matchesSearch(
                 model,
@@ -135,14 +217,23 @@ function ArmoryUI.getFilteredModels(pool)
         function(a, b)
 
             local factionA =
-                modelFaction(a)
+                modelPrimaryFaction(
+                    a
+                )
 
             local factionB =
-                modelFaction(b)
+                modelPrimaryFaction(
+                    b
+                )
 
 
-            if factionA ~= factionB then
-                return factionA < factionB
+            if factionA
+                ~= factionB then
+
+                return
+                    factionA
+                    <
+                    factionB
             end
 
 
@@ -162,7 +253,9 @@ end
 -- Available factions
 --------------------------------------------------
 
-local function getFactions(pool)
+local function getFactions(
+    pool
+)
 
     local seen = {}
     local result = {}
@@ -172,28 +265,39 @@ local function getFactions(pool)
         and pool.models ~= nil then
 
         for _, model
-            in pairs(pool.models) do
+            in pairs(
+                pool.models
+            ) do
 
-            local faction =
-                modelFaction(model)
+            for _, faction
+                in ipairs(
+                    modelFactions(
+                        model
+                    )
+                ) do
 
-
-            if not seen[faction] then
-
-                seen[faction] =
-                    true
-
-
-                table.insert(
-                    result,
+                if not seen[
                     faction
-                )
+                ] then
+
+                    seen[
+                        faction
+                    ] = true
+
+
+                    table.insert(
+                        result,
+                        faction
+                    )
+                end
             end
         end
     end
 
 
-    table.sort(result)
+    table.sort(
+        result
+    )
 
 
     return result
@@ -204,7 +308,9 @@ end
 -- Faction dropdown
 --------------------------------------------------
 
-local function buildFactionOptions(pool)
+local function buildFactionOptions(
+    pool
+)
 
     local children = {}
 
@@ -216,8 +322,10 @@ local function buildFactionOptions(pool)
 
     table.insert(
         children,
+
         {
-            tag = "Option",
+            tag =
+                "Option",
 
             attributes = {
                 selected =
@@ -233,12 +341,18 @@ local function buildFactionOptions(pool)
 
 
     for _, faction
-        in ipairs(getFactions(pool)) do
+        in ipairs(
+            getFactions(
+                pool
+            )
+        ) do
 
         table.insert(
             children,
+
             {
-                tag = "Option",
+                tag =
+                    "Option",
 
                 attributes = {
                     selected =
@@ -263,10 +377,13 @@ end
 -- Model row
 --------------------------------------------------
 
-local function buildModelRow(model)
+local function buildModelRow(
+    model
+)
 
     local spawnable =
-        model.asset ~= nil
+        model.asset
+        ~= nil
 
 
     return {
@@ -286,12 +403,9 @@ local function buildModelRow(model)
 
         children = {
 
-            --------------------------------------------------
-            -- Name
-            --------------------------------------------------
-
             {
-                tag = "Text",
+                tag =
+                    "Text",
 
                 attributes = {
                     preferredWidth = 205,
@@ -311,12 +425,9 @@ local function buildModelRow(model)
             },
 
 
-            --------------------------------------------------
-            -- Faction
-            --------------------------------------------------
-
             {
-                tag = "Text",
+                tag =
+                    "Text",
 
                 attributes = {
                     preferredWidth = 95,
@@ -331,16 +442,15 @@ local function buildModelRow(model)
                 },
 
                 value =
-                    modelFaction(model)
+                    modelFactionDisplay(
+                        model
+                    )
             },
 
 
-            --------------------------------------------------
-            -- Spawn button
-            --------------------------------------------------
-
             {
-                tag = "Button",
+                tag =
+                    "Button",
 
                 attributes = {
                     id =
@@ -380,7 +490,9 @@ end
 -- Counters
 --------------------------------------------------
 
-local function countModels(pool)
+local function countModels(
+    pool
+)
 
     local count = 0
 
@@ -389,7 +501,9 @@ local function countModels(pool)
         and pool.models ~= nil then
 
         for _, _
-            in pairs(pool.models) do
+            in pairs(
+                pool.models
+            ) do
 
             count =
                 count + 1
@@ -401,15 +515,20 @@ local function countModels(pool)
 end
 
 
-local function countSpawnable(models)
+local function countCards(
+    pool
+)
 
     local count = 0
 
 
-    for _, model
-        in ipairs(models) do
+    if pool ~= nil
+        and pool.cards ~= nil then
 
-        if model.asset ~= nil then
+        for _, _
+            in pairs(
+                pool.cards
+            ) do
 
             count =
                 count + 1
@@ -418,6 +537,80 @@ local function countSpawnable(models)
 
 
     return count
+end
+
+
+local function countSpawnable(
+    models
+)
+
+    local count = 0
+
+
+    for _, model
+        in ipairs(
+            models
+        ) do
+
+        if model.asset
+            ~= nil then
+
+            count =
+                count + 1
+        end
+    end
+
+
+    return count
+end
+
+
+--------------------------------------------------
+-- Cards button
+--------------------------------------------------
+
+local function buildCardsButton(
+    pool
+)
+
+    local cardCount =
+        countCards(
+            pool
+        )
+
+
+    return {
+        tag =
+            "Button",
+
+        attributes = {
+            id =
+                "fowwSpawnAvailableCards",
+
+            fontSize = 14,
+
+            textColor =
+                "#FFFFFF",
+
+            colors =
+                "#426A42|#527F52|#315331|#555555",
+
+            interactable =
+                cardCount > 0
+                and "true"
+                or "false",
+
+            onClick =
+                "fowwSpawnAvailableCards"
+        },
+
+        value =
+            "Spawn cards ("
+            .. tostring(
+                cardCount
+            )
+            .. ")"
+    }
 end
 
 
@@ -425,7 +618,9 @@ end
 -- Expanded UI
 --------------------------------------------------
 
-local function buildExpandedUI(pool)
+local function buildExpandedUI(
+    pool
+)
 
     local filtered =
         ArmoryUI.getFilteredModels(
@@ -443,15 +638,19 @@ local function buildExpandedUI(pool)
 
 
     --------------------------------------------------
-    -- Build model rows
+    -- Model rows
     --------------------------------------------------
 
     for _, model
-        in ipairs(filtered) do
+        in ipairs(
+            filtered
+        ) do
 
         table.insert(
             rows,
-            buildModelRow(model)
+            buildModelRow(
+                model
+            )
         )
     end
 
@@ -464,8 +663,10 @@ local function buildExpandedUI(pool)
 
         table.insert(
             rows,
+
             {
-                tag = "Text",
+                tag =
+                    "Text",
 
                 attributes = {
                     preferredHeight = 40,
@@ -486,10 +687,6 @@ local function buildExpandedUI(pool)
     end
 
 
-    --------------------------------------------------
-    -- Scroll content height
-    --------------------------------------------------
-
     local contentHeight =
         math.max(
             44,
@@ -503,7 +700,8 @@ local function buildExpandedUI(pool)
 
     return {
         {
-            tag = "Panel",
+            tag =
+                "Panel",
 
             attributes = {
                 id =
@@ -553,7 +751,6 @@ local function buildExpandedUI(pool)
 
                             attributes = {
                                 preferredHeight = 34,
-
                                 spacing = 8,
 
                                 childForceExpandHeight =
@@ -566,7 +763,8 @@ local function buildExpandedUI(pool)
                             children = {
 
                                 {
-                                    tag = "Text",
+                                    tag =
+                                        "Text",
 
                                     attributes = {
                                         preferredWidth = 350,
@@ -589,7 +787,8 @@ local function buildExpandedUI(pool)
 
 
                                 {
-                                    tag = "Button",
+                                    tag =
+                                        "Button",
 
                                     attributes = {
                                         id =
@@ -621,7 +820,8 @@ local function buildExpandedUI(pool)
                         --------------------------------------------------
 
                         {
-                            tag = "Text",
+                            tag =
+                                "Text",
 
                             attributes = {
                                 preferredHeight = 22,
@@ -637,13 +837,21 @@ local function buildExpandedUI(pool)
 
                             value =
                                 tostring(
-                                    countModels(pool)
+                                    countModels(
+                                        pool
+                                    )
                                 )
-                                .. " unlocked  •  "
-                                .. tostring(#filtered)
-                                .. " matching  •  "
-                                .. tostring(spawnable)
-                                .. " spawnable"
+                                .. " models  •  "
+                                .. tostring(
+                                    countCards(
+                                        pool
+                                    )
+                                )
+                                .. " cards  •  "
+                                .. tostring(
+                                    #filtered
+                                )
+                                .. " matching"
                         },
 
 
@@ -657,7 +865,6 @@ local function buildExpandedUI(pool)
 
                             attributes = {
                                 preferredHeight = 36,
-
                                 spacing = 8,
 
                                 childForceExpandWidth =
@@ -668,10 +875,6 @@ local function buildExpandedUI(pool)
                             },
 
                             children = {
-
-                                --------------------------------------------------
-                                -- Search
-                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -703,10 +906,6 @@ local function buildExpandedUI(pool)
                                     }
                                 },
 
-
-                                --------------------------------------------------
-                                -- Faction filter
-                                --------------------------------------------------
 
                                 {
                                     tag =
@@ -747,7 +946,7 @@ local function buildExpandedUI(pool)
 
 
                         --------------------------------------------------
-                        -- Model list
+                        -- Models
                         --------------------------------------------------
 
                         {
@@ -802,7 +1001,6 @@ local function buildExpandedUI(pool)
 
                             attributes = {
                                 preferredHeight = 38,
-
                                 spacing = 8,
 
                                 childForceExpandHeight =
@@ -814,10 +1012,6 @@ local function buildExpandedUI(pool)
 
                             children = {
 
-                                --------------------------------------------------
-                                -- Spawn filtered
-                                --------------------------------------------------
-
                                 {
                                     tag =
                                         "Button",
@@ -826,7 +1020,7 @@ local function buildExpandedUI(pool)
                                         id =
                                             "fowwArmorySpawnFiltered",
 
-                                        fontSize = 15,
+                                        fontSize = 13,
 
                                         textColor =
                                             "#FFFFFF",
@@ -844,13 +1038,14 @@ local function buildExpandedUI(pool)
                                     },
 
                                     value =
-                                        "Spawn filtered"
+                                        "Spawn models"
                                 },
 
 
-                                --------------------------------------------------
-                                -- Reset filters
-                                --------------------------------------------------
+                                buildCardsButton(
+                                    pool
+                                ),
+
 
                                 {
                                     tag =
@@ -860,7 +1055,7 @@ local function buildExpandedUI(pool)
                                         id =
                                             "fowwArmoryResetFilters",
 
-                                        fontSize = 15,
+                                        fontSize = 13,
 
                                         textColor =
                                             "#FFFFFF",
@@ -873,7 +1068,7 @@ local function buildExpandedUI(pool)
                                     },
 
                                     value =
-                                        "Reset filters"
+                                        "Reset"
                                 }
                             }
                         }
@@ -889,18 +1084,21 @@ end
 -- Collapsed UI
 --------------------------------------------------
 
-local function buildCollapsedUI()
+local function buildCollapsedUI(
+    pool
+)
 
     return {
         {
-            tag = "Panel",
+            tag =
+                "Panel",
 
             attributes = {
                 id =
                     "fowwArmoryCollapsedPanel",
 
                 width = 190,
-                height = 44,
+                height = 82,
 
                 rectAlignment =
                     "UpperRight",
@@ -915,32 +1113,53 @@ local function buildCollapsedUI()
             children = {
 
                 {
-                    tag = "Button",
+                    tag =
+                        "VerticalLayout",
 
                     attributes = {
-                        id =
-                            "fowwArmoryExpand",
+                        padding =
+                            "6 6 6 6",
 
-                        width = 174,
-                        height = 32,
+                        spacing = 4,
 
-                        rectAlignment =
-                            "MiddleCenter",
+                        childForceExpandWidth =
+                            "true",
 
-                        fontSize = 17,
-
-                        textColor =
-                            "#FFFFFF",
-
-                        colors =
-                            "#353535|#4A4A4A|#2A2A2A|#252525",
-
-                        onClick =
-                            "fowwArmoryToggleCollapsed"
+                        childForceExpandHeight =
+                            "true"
                     },
 
-                    value =
-                        "FOWW Armory  >"
+                    children = {
+
+                        buildCardsButton(
+                            pool
+                        ),
+
+
+                        {
+                            tag =
+                                "Button",
+
+                            attributes = {
+                                id =
+                                    "fowwArmoryExpand",
+
+                                fontSize = 16,
+
+                                textColor =
+                                    "#FFFFFF",
+
+                                colors =
+                                    "#353535|#4A4A4A|#2A2A2A|#252525",
+
+                                onClick =
+                                    "fowwArmoryToggleCollapsed"
+                            },
+
+                            value =
+                                "FOWW Armory  >"
+                        }
+                    }
                 }
             }
         }
@@ -952,17 +1171,23 @@ end
 -- Select UI state
 --------------------------------------------------
 
-local function buildUI(pool)
+local function buildUI(
+    pool
+)
 
     if collapsed then
 
-        return buildCollapsedUI()
+        return
+            buildCollapsedUI(
+                pool
+            )
     end
 
 
-    return buildExpandedUI(
-        pool
-    )
+    return
+        buildExpandedUI(
+            pool
+        )
 end
 
 
@@ -970,10 +1195,14 @@ end
 -- Public UI API
 --------------------------------------------------
 
-function ArmoryUI.mount(pool)
+function ArmoryUI.mount(
+    pool
+)
 
     UI.setXmlTable(
-        buildUI(pool)
+        buildUI(
+            pool
+        )
     )
 
 
@@ -983,7 +1212,9 @@ function ArmoryUI.mount(pool)
 end
 
 
-function ArmoryUI.refresh(pool)
+function ArmoryUI.refresh(
+    pool
+)
 
     ArmoryUI.mount(
         pool
@@ -1001,7 +1232,8 @@ function ArmoryUI.setSearch(
 )
 
     filters.search =
-        value or ""
+        value
+        or ""
 
 
     ArmoryUI.refresh(
@@ -1034,7 +1266,9 @@ end
 -- Reset filters
 --------------------------------------------------
 
-function ArmoryUI.resetFilters(pool)
+function ArmoryUI.resetFilters(
+    pool
+)
 
     filters.search =
         ""
