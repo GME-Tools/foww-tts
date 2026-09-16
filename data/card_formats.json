@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "cardFormatsVersion": "0.1.0",
+
+  "formats": {
+    "large": {
+      "scale": {
+        "x": 1.10,
+        "y": 1.0,
+        "z": 1.10
+      }
+    },
+
+    "small": {
+      "scale": {
+        "x": 0.55,
+        "y": 1.0,
+        "z": 0.55
+      }
+    }
+  },
+
+  "typeFormats": {
+    "ai": "large",
+    "reference": "large",
+    "unit": "large",
+
+    "weapon": "small",
+    "equipment": "small",
+    "mod": "small",
+    "chem": "small",
+    "power_armor": "small",
+    
+    "heroic": "small",
+    "perk": "small",
+    "leader": "small",
+    "event": "small",
+    "boost": "small",
+    "stranger": "small",
+    "danger": "small",
+    "creature": "small",
+    "explore": "small",
+    "quest": "small"
+  }
+}

@@ -26,6 +26,7 @@ local catalog = nil
 local layout = nil
 local models = nil
 local cards = nil
+local cardFormats = nil
 
 local modelsById = {}
 local cardsById = {}
@@ -57,6 +58,31 @@ local function appendAll(
             value
         )
     end
+end
+
+
+local function countEntries(values)
+
+    local count = 0
+
+
+    for _, _
+        in pairs(values or {}) do
+
+        count =
+            count + 1
+    end
+
+
+    return count
+end
+
+
+local function isPositiveNumber(value)
+
+    return
+        type(value) == "number"
+        and value > 0
 end
 
 
@@ -94,7 +120,8 @@ local function validateManifest(data)
         layout = true,
         products = true,
         models = true,
-        cards = true
+        cards = true,
+        card_formats = true
     }
 
 
@@ -579,6 +606,247 @@ end
 
 
 --------------------------------------------------
+-- Card formats validation
+--------------------------------------------------
+
+local function validateCardFormats(data)
+
+    if type(data) ~= "table" then
+
+        return false,
+            "Card formats root is not an object"
+    end
+
+
+    if type(data.formats) ~= "table" then
+
+        return false,
+            "Missing card formats map"
+    end
+
+
+    if type(data.typeFormats) ~= "table" then
+
+        return false,
+            "Missing card typeFormats map"
+    end
+
+
+    --------------------------------------------------
+    -- Physical formats
+    --------------------------------------------------
+
+    local formatCount = 0
+
+
+    for formatId, format
+        in pairs(data.formats) do
+
+        formatCount =
+            formatCount + 1
+
+
+        if type(formatId) ~= "string"
+            or formatId == "" then
+
+            return false,
+                "Invalid card format id"
+        end
+
+
+        if type(format) ~= "table" then
+
+            return false,
+                "Card format "
+                .. formatId
+                .. " is not an object"
+        end
+
+
+        if type(format.scale) ~= "table" then
+
+            return false,
+                "Card format "
+                .. formatId
+                .. " has no scale"
+        end
+
+
+        if not isPositiveNumber(
+            format.scale.x
+        ) then
+
+            return false,
+                "Card format "
+                .. formatId
+                .. " has invalid scale.x"
+        end
+
+
+        if not isPositiveNumber(
+            format.scale.y
+        ) then
+
+            return false,
+                "Card format "
+                .. formatId
+                .. " has invalid scale.y"
+        end
+
+
+        if not isPositiveNumber(
+            format.scale.z
+        ) then
+
+            return false,
+                "Card format "
+                .. formatId
+                .. " has invalid scale.z"
+        end
+    end
+
+
+    if formatCount == 0 then
+
+        return false,
+            "No card formats defined"
+    end
+
+
+    --------------------------------------------------
+    -- Card type -> physical format
+    --------------------------------------------------
+
+    for cardType, formatId
+        in pairs(
+            data.typeFormats
+        ) do
+
+        if type(cardType) ~= "string"
+            or cardType == "" then
+
+            return false,
+                "Invalid card type in typeFormats"
+        end
+
+
+        if type(formatId) ~= "string"
+            or formatId == "" then
+
+            return false,
+                "Card type "
+                .. cardType
+                .. " has invalid format id"
+        end
+
+
+        if data.formats[
+            formatId
+        ] == nil then
+
+            return false,
+                "Card type "
+                .. cardType
+                .. " references unknown format: "
+                .. formatId
+        end
+    end
+
+
+    return true, nil
+end
+
+
+--------------------------------------------------
+-- Cards / physical formats cross-validation
+--------------------------------------------------
+
+local function validateCardPhysicalFormats(
+    cardsData,
+    cardFormatsData
+)
+
+    local atlasFormats = {}
+
+
+    for _, card
+        in ipairs(
+            cardsData.cards
+            or {}
+        ) do
+
+        local formatId =
+            cardFormatsData.typeFormats[
+                card.type
+            ]
+
+
+        if formatId == nil then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " uses unmapped type: "
+                .. tostring(
+                    card.type
+                )
+        end
+
+
+        local format =
+            cardFormatsData.formats[
+                formatId
+            ]
+
+
+        if format == nil then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " resolves to unknown format: "
+                .. tostring(
+                    formatId
+                )
+        end
+
+
+        --------------------------------------------------
+        -- One atlas must represent one physical format.
+        --------------------------------------------------
+
+        local previousFormat =
+            atlasFormats[
+                card.atlas
+            ]
+
+
+        if previousFormat ~= nil
+            and previousFormat
+                ~= formatId then
+
+            return false,
+                "Atlas "
+                .. card.atlas
+                .. " mixes physical formats "
+                .. previousFormat
+                .. " and "
+                .. formatId
+        end
+
+
+        atlasFormats[
+            card.atlas
+        ] =
+            formatId
+    end
+
+
+    return true, nil
+end
+
+
+--------------------------------------------------
 -- Product content cross-validation
 --------------------------------------------------
 
@@ -599,10 +867,6 @@ local function validateProductContents(
             or {}
 
 
-        --------------------------------------------------
-        -- Models
-        --------------------------------------------------
-
         for _, modelId
             in ipairs(
                 contents.models
@@ -621,10 +885,6 @@ local function validateProductContents(
             end
         end
 
-
-        --------------------------------------------------
-        -- Cards
-        --------------------------------------------------
 
         for _, cardId
             in ipairs(
@@ -695,13 +955,26 @@ local function createAggregate()
 
             atlases = {},
             cards = {}
+        },
+
+
+        cardFormats = {
+            schemaVersion = 1,
+
+            cardFormatsVersion =
+                manifest
+                and manifest.manifestVersion
+                or "unknown",
+
+            formats = {},
+            typeFormats = {}
         }
     }
 end
 
 
 --------------------------------------------------
--- Merge layout resource
+-- Merge resources
 --------------------------------------------------
 
 local function mergeLayoutResource(
@@ -719,12 +992,11 @@ local function mergeLayoutResource(
             key
         ] = value
     end
+
+
+    return true
 end
 
-
---------------------------------------------------
--- Merge products resource
---------------------------------------------------
 
 local function mergeProductsResource(
     aggregate,
@@ -735,12 +1007,11 @@ local function mergeProductsResource(
         aggregate.catalog.products,
         data.products
     )
+
+
+    return true
 end
 
-
---------------------------------------------------
--- Merge models resource
---------------------------------------------------
 
 local function mergeModelsResource(
     aggregate,
@@ -751,12 +1022,11 @@ local function mergeModelsResource(
         aggregate.models.models,
         data.models
     )
+
+
+    return true
 end
 
-
---------------------------------------------------
--- Merge cards resource
---------------------------------------------------
 
 local function mergeCardsResource(
     aggregate,
@@ -773,6 +1043,72 @@ local function mergeCardsResource(
         aggregate.cards.cards,
         data.cards
     )
+
+
+    return true
+end
+
+
+local function mergeCardFormatsResource(
+    aggregate,
+    data
+)
+
+    for formatId, format
+        in pairs(
+            data.formats
+            or {}
+        ) do
+
+        if aggregate.cardFormats.formats[
+            formatId
+        ] ~= nil then
+
+            print(
+                "[FOWW] Duplicate card format: "
+                .. tostring(
+                    formatId
+                )
+            )
+
+            return false
+        end
+
+
+        aggregate.cardFormats.formats[
+            formatId
+        ] = format
+    end
+
+
+    for cardType, formatId
+        in pairs(
+            data.typeFormats
+            or {}
+        ) do
+
+        if aggregate.cardFormats.typeFormats[
+            cardType
+        ] ~= nil then
+
+            print(
+                "[FOWW] Duplicate card type format: "
+                .. tostring(
+                    cardType
+                )
+            )
+
+            return false
+        end
+
+
+        aggregate.cardFormats.typeFormats[
+            cardType
+        ] = formatId
+    end
+
+
+    return true
 end
 
 
@@ -789,48 +1125,55 @@ local function mergeResource(
     if resource.kind
         == "layout" then
 
-        mergeLayoutResource(
-            aggregate,
-            data
-        )
-
-        return true
+        return
+            mergeLayoutResource(
+                aggregate,
+                data
+            )
     end
 
 
     if resource.kind
         == "products" then
 
-        mergeProductsResource(
-            aggregate,
-            data
-        )
-
-        return true
+        return
+            mergeProductsResource(
+                aggregate,
+                data
+            )
     end
 
 
     if resource.kind
         == "models" then
 
-        mergeModelsResource(
-            aggregate,
-            data
-        )
-
-        return true
+        return
+            mergeModelsResource(
+                aggregate,
+                data
+            )
     end
 
 
     if resource.kind
         == "cards" then
 
-        mergeCardsResource(
-            aggregate,
-            data
-        )
+        return
+            mergeCardsResource(
+                aggregate,
+                data
+            )
+    end
 
-        return true
+
+    if resource.kind
+        == "card_formats" then
+
+        return
+            mergeCardFormatsResource(
+                aggregate,
+                data
+            )
     end
 
 
@@ -873,7 +1216,6 @@ local function finalize(
             .. catalogError
         )
 
-
         callback(
             false,
             nil
@@ -900,7 +1242,6 @@ local function finalize(
             "[FOWW] Invalid models registry: "
             .. modelsError
         )
-
 
         callback(
             false,
@@ -929,6 +1270,60 @@ local function finalize(
             .. cardsError
         )
 
+        callback(
+            false,
+            nil
+        )
+
+        return
+    end
+
+
+    --------------------------------------------------
+    -- Card formats
+    --------------------------------------------------
+
+    local formatsValid,
+        formatsError =
+        validateCardFormats(
+            aggregate.cardFormats
+        )
+
+
+    if not formatsValid then
+
+        print(
+            "[FOWW] Invalid card formats: "
+            .. formatsError
+        )
+
+        callback(
+            false,
+            nil
+        )
+
+        return
+    end
+
+
+    --------------------------------------------------
+    -- Cards -> formats
+    --------------------------------------------------
+
+    local physicalValid,
+        physicalError =
+        validateCardPhysicalFormats(
+            aggregate.cards,
+            aggregate.cardFormats
+        )
+
+
+    if not physicalValid then
+
+        print(
+            "[FOWW] Invalid card physical formats: "
+            .. physicalError
+        )
 
         callback(
             false,
@@ -1013,7 +1408,6 @@ local function finalize(
             .. contentsError
         )
 
-
         callback(
             false,
             nil
@@ -1038,6 +1432,9 @@ local function finalize(
 
     cards =
         aggregate.cards
+
+    cardFormats =
+        aggregate.cardFormats
 
 
     --------------------------------------------------
@@ -1076,6 +1473,16 @@ local function finalize(
     )
 
 
+    print(
+        "[FOWW] Card formats loaded: "
+        .. tostring(
+            countEntries(
+                cardFormats.formats
+            )
+        )
+    )
+
+
     --------------------------------------------------
     -- Runtime registry object
     --------------------------------------------------
@@ -1102,7 +1509,10 @@ local function finalize(
                 cardsById,
 
             atlasesById =
-                atlasesById
+                atlasesById,
+
+            cardFormats =
+                cardFormats
         }
     )
 end
@@ -1119,10 +1529,6 @@ local function loadResources(
     callback
 )
 
-    --------------------------------------------------
-    -- Finished
-    --------------------------------------------------
-
     if index > #resources then
 
         finalize(
@@ -1133,10 +1539,6 @@ local function loadResources(
         return
     end
 
-
-    --------------------------------------------------
-    -- Current resource
-    --------------------------------------------------
 
     local resource =
         resources[index]
@@ -1174,7 +1576,6 @@ local function loadResources(
                     )
                 )
 
-
                 callback(
                     false,
                     nil
@@ -1198,7 +1599,6 @@ local function loadResources(
                     "[FOWW] Could not decode resource: "
                     .. resource.src
                 )
-
 
                 callback(
                     false,
@@ -1262,7 +1662,6 @@ function Registry.load(callback)
                     )
                 )
 
-
                 callback(
                     false,
                     nil
@@ -1286,7 +1685,6 @@ function Registry.load(callback)
                     "[FOWW] Could not decode manifest JSON"
                 )
 
-
                 callback(
                     false,
                     nil
@@ -1309,7 +1707,6 @@ function Registry.load(callback)
                     "[FOWW] Invalid manifest: "
                     .. validationError
                 )
-
 
                 callback(
                     false,
@@ -1390,6 +1787,12 @@ function Registry.getAtlas(
     return atlasesById[
         atlasId
     ]
+end
+
+
+function Registry.getCardFormats()
+
+    return cardFormats
 end
 
 

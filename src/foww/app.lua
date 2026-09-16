@@ -47,30 +47,51 @@ local function getArmoryLayout()
 end
 
 
-local function getCardsSpawnPosition()
+local function getCardsLayout()
 
-    if currentRegistry ~= nil
-        and currentRegistry.layout ~= nil
-        and currentRegistry.layout.cards ~= nil
-        and currentRegistry.layout.cards.spawn ~= nil then
+    local result = {
+        spawn = {
+            x = 0,
+            y = 3,
+            z = 0
+        },
 
-        local position =
-            currentRegistry.layout.cards.spawn
+        xSpacing = 5
+    }
 
 
-        return {
-            x = position.x,
-            y = position.y,
-            z = position.z
+    if currentRegistry == nil
+        or currentRegistry.layout == nil
+        or currentRegistry.layout.cards == nil then
+
+        return result
+    end
+
+
+    local cardsLayout =
+        currentRegistry.layout.cards
+
+
+    if cardsLayout.spawn ~= nil then
+
+        result.spawn = {
+            x = cardsLayout.spawn.x,
+            y = cardsLayout.spawn.y,
+            z = cardsLayout.spawn.z
         }
     end
 
 
-    return {
-        x = 0,
-        y = 3,
-        z = 0
-    }
+    if type(
+            cardsLayout.xSpacing
+        ) == "number" then
+
+        result.xSpacing =
+            cardsLayout.xSpacing
+    end
+
+
+    return result
 end
 
 
@@ -107,10 +128,6 @@ local function rebuildPool()
         )
 
 
-    --------------------------------------------------
-    -- Logging
-    --------------------------------------------------
-
     print(
         "[FOWW] Available models: "
         .. tostring(
@@ -131,10 +148,6 @@ local function rebuildPool()
     )
 
 
-    --------------------------------------------------
-    -- Refresh UI
-    --------------------------------------------------
-
     ArmoryUI.refresh(
         currentPool
     )
@@ -152,27 +165,15 @@ function App.onLoad(saved_data)
     )
 
 
-    --------------------------------------------------
-    -- UI initially displays loading/empty pool.
-    --------------------------------------------------
-
     ArmoryUI.mount(
         nil
     )
 
 
-    --------------------------------------------------
-    -- Restore collection state
-    --------------------------------------------------
-
     State.load(
         saved_data
     )
 
-
-    --------------------------------------------------
-    -- Load registry
-    --------------------------------------------------
 
     Registry.load(
         function(
@@ -200,10 +201,6 @@ function App.onLoad(saved_data)
             )
 
 
-            --------------------------------------------------
-            -- Physical product boxes
-            --------------------------------------------------
-
             Products.reconcile(
                 currentRegistry.catalog,
 
@@ -216,10 +213,6 @@ function App.onLoad(saved_data)
                 end
             )
 
-
-            --------------------------------------------------
-            -- Logical content
-            --------------------------------------------------
 
             rebuildPool()
 
@@ -276,10 +269,6 @@ function App.setProductState(
         opened
     )
 
-
-    --------------------------------------------------
-    -- Product contents changed logically.
-    --------------------------------------------------
 
     rebuildPool()
 
@@ -512,26 +501,38 @@ function App.spawnAvailableCards(
 
 
     --------------------------------------------------
-    -- Build and spawn deck
+    -- Physical card layout
     --------------------------------------------------
 
-    local object,
+    local cardsLayout =
+        getCardsLayout()
+
+
+    --------------------------------------------------
+    -- One deck per physical format
+    --------------------------------------------------
+
+    local objects,
         spawnError =
-        DeckBuilder.spawn(
+        DeckBuilder.spawnGrouped(
             cards,
             currentRegistry.atlasesById,
+            currentRegistry.cardFormats,
 
             {
                 name =
                     "FOWW Available Cards",
 
                 position =
-                    getCardsSpawnPosition()
+                    cardsLayout.spawn,
+
+                xSpacing =
+                    cardsLayout.xSpacing
             }
         )
 
 
-    if object == nil then
+    if objects == nil then
 
         print(
             "[FOWW] Could not spawn cards: "
@@ -561,11 +562,15 @@ function App.spawnAvailableCards(
 
 
     print(
-        "[FOWW] Spawned card deck: "
+        "[FOWW] Spawned "
         .. tostring(
             #cards
         )
-        .. " card(s)"
+        .. " card(s) in "
+        .. tostring(
+            #objects
+        )
+        .. " physical-format deck(s)"
     )
 
 
@@ -576,7 +581,11 @@ function App.spawnAvailableCards(
             .. tostring(
                 #cards
             )
-            .. " available card(s)",
+            .. " card(s) in "
+            .. tostring(
+                #objects
+            )
+            .. " deck(s)",
 
             playerColor,
 
@@ -585,7 +594,7 @@ function App.spawnAvailableCards(
     end
 
 
-    return object
+    return objects
 end
 
 

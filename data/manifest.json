@@ -4,6 +4,8 @@
 
   "resources": [
     { "kind": "layout", "src": "layout.json" },
+    { "kind": "card_formats", "src": "card_formats.json" },
+    
     { "kind": "products", "src": "products/wave1/starter_set.json" },
     { "kind": "products", "src": "products/wave1/accessories.json" },
     { "kind": "products", "src": "products/wave1/survivors.json" },

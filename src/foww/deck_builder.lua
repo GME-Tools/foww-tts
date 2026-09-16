@@ -50,7 +50,26 @@ local function sortCards(cards)
 end
 
 
-local function defaultTransform()
+local function buildScale(format)
+
+    return {
+        x = format.scale.x,
+        y = format.scale.y,
+        z = format.scale.z
+    }
+end
+
+
+local function defaultTransform(scale)
+
+    scale =
+        scale
+        or {
+            x = 1,
+            y = 1,
+            z = 1
+        }
+
 
     return {
         posX = 0,
@@ -61,9 +80,9 @@ local function defaultTransform()
         rotY = 180,
         rotZ = 180,
 
-        scaleX = 1,
-        scaleY = 1,
-        scaleZ = 1
+        scaleX = scale.x,
+        scaleY = scale.y,
+        scaleZ = scale.z
     }
 end
 
@@ -91,6 +110,129 @@ local function buildAtlasState(atlas)
             atlas.uniqueBack
             == true
     }
+end
+
+
+--------------------------------------------------
+-- Resolve card physical format
+--------------------------------------------------
+
+local function getCardFormatId(
+    card,
+    cardFormats
+)
+
+    return
+        cardFormats.typeFormats[
+            card.type
+        ]
+end
+
+
+local function getCardFormat(
+    card,
+    cardFormats
+)
+
+    local formatId =
+        getCardFormatId(
+            card,
+            cardFormats
+        )
+
+
+    if formatId == nil then
+
+        return nil,
+            nil,
+            "Card type has no physical format: "
+            .. tostring(
+                card.type
+            )
+    end
+
+
+    local format =
+        cardFormats.formats[
+            formatId
+        ]
+
+
+    if format == nil then
+
+        return nil,
+            nil,
+            "Unknown physical card format: "
+            .. tostring(
+                formatId
+            )
+    end
+
+
+    return
+        formatId,
+        format,
+        nil
+end
+
+
+--------------------------------------------------
+-- Group cards by physical format
+--------------------------------------------------
+
+local function groupCardsByFormat(
+    cards,
+    cardFormats
+)
+
+    local groups = {}
+
+
+    for _, card
+        in ipairs(cards) do
+
+        local formatId,
+            format,
+            formatError =
+            getCardFormat(
+                card,
+                cardFormats
+            )
+
+
+        if formatError ~= nil then
+
+            return nil,
+                formatError
+        end
+
+
+        if groups[
+            formatId
+        ] == nil then
+
+            groups[
+                formatId
+            ] = {
+                id = formatId,
+                format = format,
+                cards = {}
+            }
+        end
+
+
+        table.insert(
+            groups[
+                formatId
+            ].cards,
+
+            card
+        )
+    end
+
+
+    return groups,
+        nil
 end
 
 
@@ -136,10 +278,6 @@ local function buildAtlasMap(
             == true
 
 
-        --------------------------------------------------
-        -- One TTS deck should keep a common orientation.
-        --------------------------------------------------
-
         if sideways == nil then
 
             sideways =
@@ -155,10 +293,6 @@ local function buildAtlasMap(
                 .. "in the same deck"
         end
 
-
-        --------------------------------------------------
-        -- Assign one CustomDeck key per atlas.
-        --------------------------------------------------
 
         if atlasKeys[
             card.atlas
@@ -221,7 +355,8 @@ end
 
 local function buildContainedCardData(
     card,
-    atlasKey
+    atlasKey,
+    scale
 )
 
     return {
@@ -250,7 +385,9 @@ local function buildContainedCardData(
             ),
 
         Transform =
-            defaultTransform()
+            defaultTransform(
+                scale
+            )
     }
 end
 
@@ -262,7 +399,8 @@ end
 local function buildSingleCardData(
     card,
     atlas,
-    atlasKey
+    atlasKey,
+    scale
 )
 
     return {
@@ -302,7 +440,9 @@ local function buildSingleCardData(
         },
 
         Transform =
-            defaultTransform()
+            defaultTransform(
+                scale
+            )
     }
 end
 
@@ -314,6 +454,7 @@ end
 function DeckBuilder.buildData(
     cards,
     atlasesById,
+    format,
     name
 )
 
@@ -333,6 +474,12 @@ function DeckBuilder.buildData(
     sortCards(
         orderedCards
     )
+
+
+    local scale =
+        buildScale(
+            format
+        )
 
 
     local atlasKeys,
@@ -376,7 +523,8 @@ function DeckBuilder.buildData(
             buildSingleCardData(
                 card,
                 atlas,
-                atlasKey
+                atlasKey,
+                scale
             ),
             nil
     end
@@ -404,7 +552,8 @@ function DeckBuilder.buildData(
         local cardData =
             buildContainedCardData(
                 card,
-                atlasKey
+                atlasKey,
+                scale
             )
 
 
@@ -433,7 +582,9 @@ function DeckBuilder.buildData(
             "Dynamically generated FOWW deck",
 
         Transform =
-            defaultTransform(),
+            defaultTransform(
+                scale
+            ),
 
         SidewaysCard =
             sideways,
@@ -452,17 +603,19 @@ end
 
 
 --------------------------------------------------
--- Spawn
+-- Spawn one physical-format group
 --------------------------------------------------
 
 function DeckBuilder.spawn(
     cards,
     atlasesById,
+    format,
     options
 )
 
     options =
-        options or {}
+        options
+        or {}
 
 
     local data,
@@ -470,6 +623,7 @@ function DeckBuilder.spawn(
         DeckBuilder.buildData(
             cards,
             atlasesById,
+            format,
             options.name
         )
 
@@ -526,7 +680,185 @@ function DeckBuilder.spawn(
     end
 
 
+    if object == nil then
+
+        return nil,
+            "spawnObjectData returned nil"
+    end
+
+
+    --------------------------------------------------
+    -- Explicitly apply the physical scale as well.
+    --------------------------------------------------
+
+    local scale =
+        buildScale(
+            format
+        )
+
+
+    object.setScale(
+        scale
+    )
+
+
     return object,
+        nil
+end
+
+
+--------------------------------------------------
+-- Spawn cards grouped by physical format
+--------------------------------------------------
+
+function DeckBuilder.spawnGrouped(
+    cards,
+    atlasesById,
+    cardFormats,
+    options
+)
+
+    options =
+        options
+        or {}
+
+
+    local groups,
+        groupError =
+        groupCardsByFormat(
+            cards,
+            cardFormats
+        )
+
+
+    if groups == nil then
+
+        return nil,
+            groupError
+    end
+
+
+    --------------------------------------------------
+    -- Deterministic format ordering
+    --------------------------------------------------
+
+    local formatIds = {}
+
+
+    for formatId, _
+        in pairs(groups) do
+
+        table.insert(
+            formatIds,
+            formatId
+        )
+    end
+
+
+    table.sort(
+        formatIds
+    )
+
+
+    --------------------------------------------------
+    -- Layout
+    --------------------------------------------------
+
+    local origin =
+        options.position
+        or {
+            x = 0,
+            y = 3,
+            z = 0
+        }
+
+
+    local xSpacing =
+        options.xSpacing
+        or 5
+
+
+    local spawnedObjects = {}
+
+
+    --------------------------------------------------
+    -- One deck per physical format
+    --------------------------------------------------
+
+    for index, formatId
+        in ipairs(
+            formatIds
+        ) do
+
+        local group =
+            groups[
+                formatId
+            ]
+
+
+        local position = {
+            x =
+                origin.x
+                + (
+                    index - 1
+                )
+                * xSpacing,
+
+            y =
+                origin.y,
+
+            z =
+                origin.z
+        }
+
+
+        local baseName =
+            options.name
+            or "FOWW Available Cards"
+
+
+        local object,
+            spawnError =
+            DeckBuilder.spawn(
+                group.cards,
+                atlasesById,
+                group.format,
+
+                {
+                    name =
+                        baseName
+                        .. " - "
+                        .. formatId,
+
+                    position =
+                        position,
+
+                    rotation =
+                        options.rotation
+                }
+            )
+
+
+        if object == nil then
+
+            return nil,
+                "Could not spawn format "
+                .. formatId
+                .. ": "
+                .. tostring(
+                    spawnError
+                )
+        end
+
+
+        table.insert(
+            spawnedObjects,
+            object
+        )
+    end
+
+
+    return spawnedObjects,
         nil
 end
 
