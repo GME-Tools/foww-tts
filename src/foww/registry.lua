@@ -23,9 +23,13 @@ local MANIFEST_URL =
 local manifest = nil
 
 local catalog = nil
+local layout = nil
 local models = nil
+local cards = nil
 
 local modelsById = {}
+local cardsById = {}
+local atlasesById = {}
 
 
 --------------------------------------------------
@@ -86,6 +90,14 @@ local function validateManifest(data)
     end
 
 
+    local supportedKinds = {
+        layout = true,
+        products = true,
+        models = true,
+        cards = true
+    }
+
+
     for index, resource
         in ipairs(data.resources) do
 
@@ -96,6 +108,20 @@ local function validateManifest(data)
                 "Resource #"
                 .. tostring(index)
                 .. " has no kind"
+        end
+
+
+        if not supportedKinds[
+            resource.kind
+        ] then
+
+            return false,
+                "Resource #"
+                .. tostring(index)
+                .. " has unsupported kind: "
+                .. tostring(
+                    resource.kind
+                )
         end
 
 
@@ -288,12 +314,278 @@ end
 
 
 --------------------------------------------------
--- Cross-validation
+-- Cards validation
+--------------------------------------------------
+
+local function validateCards(data)
+
+    if type(data) ~= "table" then
+
+        return false,
+            "Cards root is not an object"
+    end
+
+
+    if type(data.atlases) ~= "table" then
+
+        return false,
+            "Missing atlases array"
+    end
+
+
+    if type(data.cards) ~= "table" then
+
+        return false,
+            "Missing cards array"
+    end
+
+
+    --------------------------------------------------
+    -- Atlases
+    --------------------------------------------------
+
+    local atlasIds = {}
+
+
+    for index, atlas
+        in ipairs(data.atlases) do
+
+        if type(atlas.id) ~= "string"
+            or atlas.id == "" then
+
+            return false,
+                "Atlas #"
+                .. tostring(index)
+                .. " has no valid id"
+        end
+
+
+        if atlasIds[atlas.id] then
+
+            return false,
+                "Duplicate atlas id: "
+                .. atlas.id
+        end
+
+
+        if type(atlas.face) ~= "string"
+            or atlas.face == "" then
+
+            return false,
+                "Atlas "
+                .. atlas.id
+                .. " has no face URL"
+        end
+
+
+        if type(atlas.back) ~= "string"
+            or atlas.back == "" then
+
+            return false,
+                "Atlas "
+                .. atlas.id
+                .. " has no back URL"
+        end
+
+
+        if type(atlas.width) ~= "number"
+            or atlas.width < 1
+            or atlas.width
+                ~= math.floor(
+                    atlas.width
+                ) then
+
+            return false,
+                "Atlas "
+                .. atlas.id
+                .. " has invalid width"
+        end
+
+
+        if type(atlas.height) ~= "number"
+            or atlas.height < 1
+            or atlas.height
+                ~= math.floor(
+                    atlas.height
+                ) then
+
+            return false,
+                "Atlas "
+                .. atlas.id
+                .. " has invalid height"
+        end
+
+
+        local capacity =
+            atlas.width
+            * atlas.height
+
+
+        if capacity > 100 then
+
+            return false,
+                "Atlas "
+                .. atlas.id
+                .. " contains more than 100 slots"
+        end
+
+
+        atlasIds[
+            atlas.id
+        ] = atlas
+    end
+
+
+    --------------------------------------------------
+    -- Cards
+    --------------------------------------------------
+
+    local cardIds = {}
+    local occupiedSlots = {}
+
+
+    for index, card
+        in ipairs(data.cards) do
+
+        if type(card.id) ~= "string"
+            or card.id == "" then
+
+            return false,
+                "Card #"
+                .. tostring(index)
+                .. " has no valid id"
+        end
+
+
+        if cardIds[card.id] then
+
+            return false,
+                "Duplicate card id: "
+                .. card.id
+        end
+
+
+        if type(card.name) ~= "string"
+            or card.name == "" then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " has no name"
+        end
+
+
+        if type(card.type) ~= "string"
+            or card.type == "" then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " has no type"
+        end
+
+
+        if type(card.atlas) ~= "string"
+            or card.atlas == "" then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " has no atlas"
+        end
+
+
+        local atlas =
+            atlasIds[
+                card.atlas
+            ]
+
+
+        if atlas == nil then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " references unknown atlas: "
+                .. tostring(
+                    card.atlas
+                )
+        end
+
+
+        if type(card.slot) ~= "number"
+            or card.slot < 0
+            or card.slot
+                ~= math.floor(
+                    card.slot
+                ) then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " has invalid slot"
+        end
+
+
+        local capacity =
+            atlas.width
+            * atlas.height
+
+
+        if card.slot >= capacity
+            or card.slot > 99 then
+
+            return false,
+                "Card "
+                .. card.id
+                .. " has slot outside atlas: "
+                .. tostring(
+                    card.slot
+                )
+        end
+
+
+        local slotKey =
+            card.atlas
+            .. ":"
+            .. tostring(
+                card.slot
+            )
+
+
+        if occupiedSlots[
+            slotKey
+        ] then
+
+            return false,
+                "Atlas slot used twice: "
+                .. slotKey
+        end
+
+
+        occupiedSlots[
+            slotKey
+        ] = true
+
+
+        cardIds[
+            card.id
+        ] = true
+    end
+
+
+    return true, nil
+end
+
+
+--------------------------------------------------
+-- Product content cross-validation
 --------------------------------------------------
 
 local function validateProductContents(
     catalogData,
-    modelIndex
+    modelIndex,
+    cardIndex
 )
 
     for _, product
@@ -306,6 +598,10 @@ local function validateProductContents(
             product.contents
             or {}
 
+
+        --------------------------------------------------
+        -- Models
+        --------------------------------------------------
 
         for _, modelId
             in ipairs(
@@ -322,6 +618,29 @@ local function validateProductContents(
                     .. product.id
                     .. " references unknown model: "
                     .. modelId
+            end
+        end
+
+
+        --------------------------------------------------
+        -- Cards
+        --------------------------------------------------
+
+        for _, cardId
+            in ipairs(
+                contents.cards
+                or {}
+            ) do
+
+            if cardIndex[
+                cardId
+            ] == nil then
+
+                return false,
+                    "Product "
+                    .. product.id
+                    .. " references unknown card: "
+                    .. cardId
             end
         end
     end
@@ -341,6 +660,7 @@ local function createAggregate()
 
         catalog = {
             schemaVersion = 1,
+
             catalogVersion =
                 manifest
                 and manifest.manifestVersion
@@ -349,7 +669,8 @@ local function createAggregate()
             products = {}
         },
 
-        layout = {}
+
+        layout = {},
 
 
         models = {
@@ -361,13 +682,48 @@ local function createAggregate()
                 or "unknown",
 
             models = {}
+        },
+
+
+        cards = {
+            schemaVersion = 1,
+
+            cardsVersion =
+                manifest
+                and manifest.manifestVersion
+                or "unknown",
+
+            atlases = {},
+            cards = {}
         }
     }
 end
 
 
 --------------------------------------------------
--- Merge one resource
+-- Merge layout resource
+--------------------------------------------------
+
+local function mergeLayoutResource(
+    aggregate,
+    data
+)
+
+    for key, value
+        in pairs(
+            data.layout
+            or {}
+        ) do
+
+        aggregate.layout[
+            key
+        ] = value
+    end
+end
+
+
+--------------------------------------------------
+-- Merge products resource
 --------------------------------------------------
 
 local function mergeProductsResource(
@@ -382,6 +738,10 @@ local function mergeProductsResource(
 end
 
 
+--------------------------------------------------
+-- Merge models resource
+--------------------------------------------------
+
 local function mergeModelsResource(
     aggregate,
     data
@@ -394,11 +754,38 @@ local function mergeModelsResource(
 end
 
 
+--------------------------------------------------
+-- Merge cards resource
+--------------------------------------------------
+
+local function mergeCardsResource(
+    aggregate,
+    data
+)
+
+    appendAll(
+        aggregate.cards.atlases,
+        data.atlases
+    )
+
+
+    appendAll(
+        aggregate.cards.cards,
+        data.cards
+    )
+end
+
+
+--------------------------------------------------
+-- Merge one resource
+--------------------------------------------------
+
 local function mergeResource(
     aggregate,
     resource,
     data
 )
+
     if resource.kind
         == "layout" then
 
@@ -409,6 +796,7 @@ local function mergeResource(
 
         return true
     end
+
 
     if resource.kind
         == "products" then
@@ -426,6 +814,18 @@ local function mergeResource(
         == "models" then
 
         mergeModelsResource(
+            aggregate,
+            data
+        )
+
+        return true
+    end
+
+
+    if resource.kind
+        == "cards" then
+
+        mergeCardsResource(
             aggregate,
             data
         )
@@ -473,6 +873,7 @@ local function finalize(
             .. catalogError
         )
 
+
         callback(
             false,
             nil
@@ -500,6 +901,7 @@ local function finalize(
             .. modelsError
         )
 
+
         callback(
             false,
             nil
@@ -510,7 +912,35 @@ local function finalize(
 
 
     --------------------------------------------------
-    -- Build indexes
+    -- Cards
+    --------------------------------------------------
+
+    local cardsValid,
+        cardsError =
+        validateCards(
+            aggregate.cards
+        )
+
+
+    if not cardsValid then
+
+        print(
+            "[FOWW] Invalid cards registry: "
+            .. cardsError
+        )
+
+
+        callback(
+            false,
+            nil
+        )
+
+        return
+    end
+
+
+    --------------------------------------------------
+    -- Build model index
     --------------------------------------------------
 
     modelsById = {}
@@ -528,6 +958,42 @@ local function finalize(
 
 
     --------------------------------------------------
+    -- Build atlas index
+    --------------------------------------------------
+
+    atlasesById = {}
+
+
+    for _, atlas
+        in ipairs(
+            aggregate.cards.atlases
+        ) do
+
+        atlasesById[
+            atlas.id
+        ] = atlas
+    end
+
+
+    --------------------------------------------------
+    -- Build card index
+    --------------------------------------------------
+
+    cardsById = {}
+
+
+    for _, card
+        in ipairs(
+            aggregate.cards.cards
+        ) do
+
+        cardsById[
+            card.id
+        ] = card
+    end
+
+
+    --------------------------------------------------
     -- Validate product references
     --------------------------------------------------
 
@@ -535,7 +1001,8 @@ local function finalize(
         contentsError =
         validateProductContents(
             aggregate.catalog,
-            modelsById
+            modelsById,
+            cardsById
         )
 
 
@@ -545,6 +1012,7 @@ local function finalize(
             "[FOWW] Invalid product contents: "
             .. contentsError
         )
+
 
         callback(
             false,
@@ -562,9 +1030,19 @@ local function finalize(
     catalog =
         aggregate.catalog
 
+    layout =
+        aggregate.layout
+
     models =
         aggregate.models
 
+    cards =
+        aggregate.cards
+
+
+    --------------------------------------------------
+    -- Logging
+    --------------------------------------------------
 
     print(
         "[FOWW] Products loaded: "
@@ -582,6 +1060,26 @@ local function finalize(
     )
 
 
+    print(
+        "[FOWW] Atlases loaded: "
+        .. tostring(
+            #cards.atlases
+        )
+    )
+
+
+    print(
+        "[FOWW] Cards loaded: "
+        .. tostring(
+            #cards.cards
+        )
+    )
+
+
+    --------------------------------------------------
+    -- Runtime registry object
+    --------------------------------------------------
+
     callback(
         true,
         {
@@ -589,13 +1087,22 @@ local function finalize(
                 catalog,
 
             layout =
-                aggregate.layout,
+                layout,
 
             models =
                 models,
 
             modelsById =
-                modelsById
+                modelsById,
+
+            cards =
+                cards,
+
+            cardsById =
+                cardsById,
+
+            atlasesById =
+                atlasesById
         }
     )
 end
@@ -755,6 +1262,7 @@ function Registry.load(callback)
                     )
                 )
 
+
                 callback(
                     false,
                     nil
@@ -778,6 +1286,7 @@ function Registry.load(callback)
                     "[FOWW] Could not decode manifest JSON"
                 )
 
+
                 callback(
                     false,
                     nil
@@ -800,6 +1309,7 @@ function Registry.load(callback)
                     "[FOWW] Invalid manifest: "
                     .. validationError
                 )
+
 
                 callback(
                     false,
@@ -847,12 +1357,38 @@ function Registry.getCatalog()
 end
 
 
+function Registry.getLayout()
+
+    return layout
+end
+
+
 function Registry.getModel(
     modelId
 )
 
     return modelsById[
         modelId
+    ]
+end
+
+
+function Registry.getCard(
+    cardId
+)
+
+    return cardsById[
+        cardId
+    ]
+end
+
+
+function Registry.getAtlas(
+    atlasId
+)
+
+    return atlasesById[
+        atlasId
     ]
 end
 

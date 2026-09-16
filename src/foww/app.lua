@@ -65,6 +65,7 @@ local function rebuildPool()
         Pool.build(
             currentRegistry.catalog,
             currentRegistry.modelsById,
+            currentRegistry.cardsById,
 
             function(product)
 
@@ -76,6 +77,10 @@ local function rebuildPool()
         )
 
 
+    --------------------------------------------------
+    -- Logging
+    --------------------------------------------------
+
     print(
         "[FOWW] Available models: "
         .. tostring(
@@ -86,8 +91,21 @@ local function rebuildPool()
     )
 
 
+    print(
+        "[FOWW] Available cards: "
+        .. tostring(
+            Pool.countCards(
+                currentPool
+            )
+        )
+    )
+
+
     --------------------------------------------------
     -- Pool changed -> Armory UI changes immediately.
+    --
+    -- Armory currently only uses pool.models.
+    -- pool.cards is ignored by the UI for now.
     --------------------------------------------------
 
     ArmoryUI.refresh(
@@ -102,14 +120,18 @@ end
 
 function App.onLoad(saved_data)
 
-    print("[FOWW] Starting...")
+    print(
+        "[FOWW] Starting..."
+    )
 
 
     --------------------------------------------------
     -- UI initially displays an empty/loading pool.
     --------------------------------------------------
 
-    ArmoryUI.mount(nil)
+    ArmoryUI.mount(
+        nil
+    )
 
 
     --------------------------------------------------
@@ -229,7 +251,7 @@ function App.setProductState(
 
 
     --------------------------------------------------
-    -- This also refreshes the Armory UI.
+    -- Product contents changed logically.
     --------------------------------------------------
 
     rebuildPool()
@@ -288,6 +310,7 @@ function App.resetArmoryFilters()
     )
 end
 
+
 function App.toggleArmoryCollapsed()
 
     ArmoryUI.toggleCollapsed(
@@ -326,7 +349,9 @@ function App.spawnArmoryModel(
 
         print(
             "[FOWW] Model is not available: "
-            .. tostring(modelId)
+            .. tostring(
+                modelId
+            )
         )
 
         return nil
@@ -367,6 +392,7 @@ function App.spawnArmoryFiltered(
 )
 
     if currentPool == nil then
+
         return 0
     end
 
@@ -388,7 +414,9 @@ function App.spawnArmoryFiltered(
 
         broadcastToColor(
             "Armory: "
-            .. tostring(spawned)
+            .. tostring(
+                spawned
+            )
             .. " model(s) spawned",
 
             playerColor,
@@ -407,16 +435,19 @@ end
 --------------------------------------------------
 
 function App.getRegistry()
+
     return currentRegistry
 end
 
 
 function App.getPool()
+
     return currentPool
 end
 
 
 function App.rebuildPool()
+
     rebuildPool()
 end
 

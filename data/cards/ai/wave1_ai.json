@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "cardsVersion": "0.1.0",
+
+  "atlases": [
+    {
+      "id": "wave1_ai_deck",
+
+      "face": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/cards/wave1_ai_deck.png",
+      "back": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/backs/ai_back.png",
+
+      "width": 8,
+      "height": 6,
+
+      "backIsHidden": true,
+      "uniqueBack": false
+    }
+  ],
+
+  "cards": [
+    {
+      "id": "ai_mutant_hound",
+      "name": "Mutant Hound",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 0
+    },
+    {
+      "id": "ai_super_mutant",
+      "name": "Super Mutant",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 1
+    },
+    {
+      "id": "ai_deathclaw",
+      "name": "Deathclaw",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 2
+    },
+    {
+      "id": "ai_brute",
+      "name": "Brute",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 3
+    },
+    {
+      "id": "ai_aviator",
+      "name": "Aviator",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 4
+    },
+    {
+      "id": "ai_sole_survivor",
+      "name": "Sole Survivor",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 5
+    },
+    {
+      "id": "ai_sole_survivor_day_one",
+      "name": "Sole Survivor Day One",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 6
+    },
+    {
+      "id": "ai_dogmeat",
+      "name": "Dogmeat",
+      "type": "ai",
+      "atlas": "wave1_ai_deck",
+      "slot": 7
+    }
+  ]
+}

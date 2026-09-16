@@ -19,6 +19,9 @@
     { "kind": "models", "src": "models/super_mutants.json" },
     { "kind": "models", "src": "models/survivors.json" },
     { "kind": "models", "src": "models/unaligned.json" },
-    { "kind": "models", "src": "models/zetan.json" }
+    { "kind": "models", "src": "models/zetan.json" },
+
+    { "kind": "cards", "src": "cards/ai/wave1_ai.json"
+}
   ]
 }
