@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_settlement_deck",
+      "name": "Settlement Deck",
+      "wave": 1,
+      "productType": "rules",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/settlement_deck.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/settlement_deck_closed.png",
+
+        "position": {
+          "x": -49.75,
+          "y": 1.82,
+          "z": 57.75
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 0.66,
+          "y": 1.0,
+          "z": 0.66
+        },
+
+        "thickness": 0.45,
+        "locked": true
+      },
+
+      "contents": {
+        "models": [],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_nuka_caps",
+      "name": "Nuka Caps",
+      "wave": 1,
+      "productType": "accessories",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/caps_set_closed.png",
+        "position": {
+          "x": -52,
+          "y": 1.82,
+          "z": 59.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 2.42,
+          "y": 1,
+          "z": 2.42
+        },
+        "thickness": 0.6,
+        "locked": true
+      },
+      "contents": {
+        "models": [],
+        "cards": []
+      }
+    }
+  ]
+}

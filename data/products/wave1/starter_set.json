@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_starter_set",
+      "name": "Two-Player Starter Set",
+      "wave": 1,
+      "productType": "rules",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/starter_set.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/starter_set_closed.png",
+
+        "position": {
+          "x": -57,
+          "y": 1.82,
+          "z": 60
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 3,
+          "y": 1.0,
+          "z": 3
+        },
+
+        "thickness": 1.0,
+        "locked": true
+      },
+
+      "contents": {
+        "models": [
+          "nora",
+          "dogmeat",
+          "settler_m",
+          "settler_f",
+          "brute",
+          "super_mutant",
+          "aviator",
+          "mutant_hound_1",
+          "mutant_hound_2",
+          "enslaved_tech",
+          "aspirant_goddard",
+          "deathclaw",
+          "alien_zetan"
+        ],
+        "cards": []
+      }
+    }
+  ]
+}

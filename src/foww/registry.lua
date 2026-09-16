@@ -341,16 +341,15 @@ local function createAggregate()
 
         catalog = {
             schemaVersion = 1,
-
             catalogVersion =
                 manifest
                 and manifest.manifestVersion
                 or "unknown",
 
-            layout = {},
-
             products = {}
         },
+
+        layout = {}
 
 
         models = {
@@ -380,25 +379,6 @@ local function mergeProductsResource(
         aggregate.catalog.products,
         data.products
     )
-
-
-    --------------------------------------------------
-    -- Layout remains optional.
-    --
-    -- Currently catalog.json owns it.
-    -- Later we can move this elsewhere.
-    --------------------------------------------------
-
-    if data.layout ~= nil then
-
-        for key, value
-            in pairs(data.layout) do
-
-            aggregate.catalog.layout[
-                key
-            ] = value
-        end
-    end
 end
 
 
@@ -419,6 +399,16 @@ local function mergeResource(
     resource,
     data
 )
+    if resource.kind
+        == "layout" then
+
+        mergeLayoutResource(
+            aggregate,
+            data
+        )
+
+        return true
+    end
 
     if resource.kind
         == "products" then
@@ -597,6 +587,9 @@ local function finalize(
         {
             catalog =
                 catalog,
+
+            layout =
+                aggregate.layout,
 
             models =
                 models,

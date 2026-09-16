@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_robots_core_box",
+      "name": "Robots Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box_closed.png",
+        "position": {
+          "x": -50.75,
+          "y": 1.82,
+          "z": 41.25
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1.7,
+          "y": 1,
+          "z": 1.7
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "protectron",
+          "protectron_2",
+          "eyebot",
+          "mr_handy",
+          "assaultron",
+          "assaultron_2",
+          "assaultron_3",
+          "sentry_bot"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_creatures_core_box",
+      "name": "Creatures Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/core_box_closed.png",
+        "position": {
+          "x": -56.25,
+          "y": 1.82,
+          "z": 41.25
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1.7,
+          "y": 1,
+          "z": 1.7
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "deathclaw",
+          "radscorpion",
+          "feral_ghoul",
+          "feral_ghoul",
+          "feral_ghoul_2",
+          "feral_ghoul_2",
+          "feral_ghoul_3",
+          "feral_ghoul_3",
+          "radroaches",
+          "radroaches",
+          "radroaches"
+        ],
+        "cards": []
+      }
+    }
+  ]
+}

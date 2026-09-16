@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "deathclaw",
+      "name": "Deathclaw",
+      "faction": ""
+    },
+    {
+      "id": "radscorpion",
+      "name": "Radscorpion",
+      "faction": ""
+    },
+
+    {
+      "id": "feral_ghoul",
+      "name": "Feral Ghoul",
+      "faction": ""
+    },
+    {
+      "id": "feral_ghoul_2",
+      "name": "Feral Ghoul",
+      "faction": ""
+    },
+    {
+      "id": "feral_ghoul_3",
+      "name": "Feral Ghoul",
+      "faction": ""
+    },
+
+    {
+      "id": "radroaches",
+      "name": "Radroaches",
+      "faction": ""
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "codsworth",
+      "name": "Codsworth",
+      "faction": ""
+    },
+    {
+      "id": "eyebot",
+      "name": "Eyebot",
+      "faction": ""
+    },
+    {
+      "id": "protectron",
+      "name": "Protectron",
+      "faction": ""
+    },
+    {
+      "id": "protectron_2",
+      "name": "Protectron",
+      "faction": ""
+    },
+
+    {
+      "id": "mr_handy",
+      "name": "Mr. Handy",
+      "faction": ""
+    },
+    
+    {
+      "id": "assaultron",
+      "name": "Assaultron",
+      "faction": ""
+    },
+    {
+      "id": "assaultron_2",
+      "name": "Assaultron",
+      "faction": ""
+    },
+    {
+      "id": "assaultron_3",
+      "name": "Assaultron",
+      "faction": ""
+    },
+    {
+      "id": "sentry_bot",
+      "name": "Sentry Bot",
+      "faction": ""
+    }
+  ]
+}

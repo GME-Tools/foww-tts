@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "alien_zetan",
+      "name": "Alien Zetan",
+      "faction": ""
+    }
+  ]
+}

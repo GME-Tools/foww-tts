@@ -32,21 +32,15 @@ local currentPool =
 
 local function getArmoryLayout()
 
-    if currentRegistry == nil then
+    if currentRegistry == nil
+        or currentRegistry.layout == nil then
+
         return nil
     end
 
 
-    local catalog =
-        currentRegistry.catalog
-
-
-    if catalog.layout == nil then
-        return nil
-    end
-
-
-    return catalog.layout.armory
+    return
+        currentRegistry.layout.armory
 end
 
 

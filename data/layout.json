@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "layoutVersion": "0.1.0",
+
+  "layout": {
+    "armory": {
+      "origin": {
+        "x": -30,
+        "y": 4.21,
+        "z": 100
+      },
+
+      "columns": 6,
+      "xSpacing": 2.5,
+      "zSpacing": 3.0,
+      "occupancyRadius": 0.8
+    }
+  }
+}

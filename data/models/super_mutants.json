@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "aviator",
+      "name": "Aviator",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "brute",
+      "name": "Brute",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "super_mutant",
+      "name": "Super Mutant",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "mutant_hound_1",
+      "name": "Mutant Hound",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "mutant_hound_2",
+      "name": "Mutant Hound",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "enslaved_tech",
+      "name": "Enslaved Tech",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "master",
+      "name": "Master",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "brute_2",
+      "name": "Brute",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "super_mutant_2",
+      "name": "Super Mutant",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "super_mutant_3",
+      "name": "Super Mutant",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "super_mutant_4",
+      "name": "Super Mutant",
+      "faction": "super_mutant"
+    },
+
+    {
+      "id": "hammer",
+      "name": "Hammer",
+      "faction": "super_mutant"
+    },
+
+    {
+      "id": "suicider",
+      "name": "Suicider",
+      "faction": "super_mutant"
+    },
+    {
+      "id": "suicider_2",
+      "name": "Suicider",
+      "faction": "super_mutant"
+    },
+
+    {
+      "id": "behemoth",
+      "name": "Behemoth",
+      "faction": "super_mutant"
+    }
+  ]
+}

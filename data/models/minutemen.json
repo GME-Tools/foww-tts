@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "preston_garvey",
+      "name": "Preston Garvey",
+      "faction": ["survivor", "minutemen"]
+    },
+    {
+      "id": "minuteman_1",
+      "name": "Minuteman",
+      "faction": "minutemen"
+    },
+    {
+      "id": "minuteman_2",
+      "name": "Minuteman",
+      "faction": "minutemen"
+    },
+    {
+      "id": "minuteman_3",
+      "name": "Minuteman",
+      "faction": "minutemen"
+    },
+    {
+      "id": "minuteman_4",
+      "name": "Minuteman",
+      "faction": "minutemen"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_red_rocket",
+      "name": "Scenic Set",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/red_rocket.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/red_rocket_closed.png",
+        "position": {
+          "x": -53.75,
+          "y": 1.82,
+          "z": 36.75
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 2.3,
+          "y": 1,
+          "z": 2.3
+        },
+        "thickness": 0.7,
+        "locked": true
+      },
+      "contents": {
+        "models": [],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_turrets",
+      "name": "Terrain Expansion: Turrets",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/turrets.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/turrets_closed.png",
+
+        "position": {
+          "x": -51,
+          "y": 1.82,
+          "z": 44.5
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 1,
+          "y": 1.0,
+          "z": 1
+        },
+
+        "thickness": 0.45,
+        "locked": true
+      },
+
+      "contents": {
+        "models": [
+          "gas_powered_turret",
+          "gas_powered_turret",
+          "laser_turret",
+          "laser_turret"
+        ],
+        "cards": []
+      }
+    }
+  ]
+}

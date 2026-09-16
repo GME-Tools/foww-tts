@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_survivors_core_box",
+      "name": "Survivors Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/survivors_core_box_closed.png",
+        "position": {
+          "x": -58,
+          "y": 1.82,
+          "z": 54.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1.5,
+          "y": 1,
+          "z": 1.5
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "mama_murphy",
+          "preston_garvey",
+          "ronnie_shaw",
+          "sturges",
+          "settler_m",
+          "settler_f",
+          "scavenger_m",
+          "scavenger_f"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_heroes_of_sanctuary_hills",
+      "name": "Heroes of Sanctuary Hills",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/heroes_of_sanctuary_hills.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/heroes_of_sanctuary_hills_closed.png",
+        "position": {
+          "x": -58,
+          "y": 1.82,
+          "z": 51.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "sole_survivor_male",
+          "dogmeat_with_goggles",
+          "codsworth"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_boston_companions",
+      "name": "Boston Companions",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/boston_companions.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/boston_companions_closed.png",
+        "position": {
+          "x": -58,
+          "y": 1.82,
+          "z": 49.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "x6_88_courser",
+          "piper",
+          "cait"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_minutemen",
+      "name": "Minutemen Posse",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/minutemen_posse.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/minutemen_posse_closed.png",
+        "position": {
+          "x": -58,
+          "y": 1.82,
+          "z": 47.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "minuteman_1",
+          "minuteman_2",
+          "minuteman_3",
+          "minuteman_4"
+        ],
+        "cards": []
+      }
+    },
+    {
+      "id": "w1_nuka_girl",
+      "name": "Nuka-Cola Girl",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl.jpg",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/nuka_cola_girl_closed.jpg",
+
+        "position": {
+          "x": -56,
+          "y": 1.82,
+          "z": 44.5
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 1,
+          "y": 1.0,
+          "z": 1
+        },
+
+        "thickness": 0.45,
+        "locked": true
+      },
+
+      "contents": {
+        "models": [
+          "nuka_girl"
+        ],
+        "cards": []
+      }
+    }
+  ]
+}

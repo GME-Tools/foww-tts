@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "aspirant_goddard",
+      "name": "Aspirant Goddard",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "lancer",
+      "name": "Lancer",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "lancer_2",
+      "name": "Lancer",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "field_scribe",
+      "name": "Field Scribe",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "field_scribe_2",
+      "name": "Field Scribe",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "knight_patrol",
+      "name": "Knight Patrol",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "knight_patrol_2",
+      "name": "Knight Patrol",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "paladin",
+      "name": "Paladin",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "knight_captain_cade",
+      "name": "Knight-Captain Cade",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "paladin_danse",
+      "name": "Paladin Danse",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "knight",
+      "name": "Knight",
+      "faction": "brotherhood_of_steel"
+    },
+    {
+      "id": "knight_patrol_3",
+      "name": "Knight Patrol",
+      "faction": "brotherhood_of_steel"
+    }
+  ]
+}

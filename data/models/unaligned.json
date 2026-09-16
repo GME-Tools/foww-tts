@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "modelsVersion": "0.1.0",
+
+  "models": [
+    {
+      "id": "gas_powered_turret",
+      "name": "Gas Powered Turret",
+      "faction": ""
+    },
+    {
+      "id": "laser_turret",
+      "name": "Laser Turret",
+      "faction": ""
+    }
+  ]
+}

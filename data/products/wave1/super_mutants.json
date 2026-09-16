@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "productsVersion": "0.1.0",
+
+  "products": [
+    {
+      "id": "w1_super_mutants_core_box",
+      "name": "Super Mutants Core Box",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/super_mutants_core_box_closed.png",
+        "position": {
+          "x": -53.5,
+          "y": 1.82,
+          "z": 54.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1.5,
+          "y": 1,
+          "z": 1.5
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "master",
+          "brute_2",
+          "super_mutant_2",
+          "super_mutant_3",
+          "super_mutant_4",
+          "mutant_hound_1",
+          "mutant_hound_2"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_hammer",
+      "name": "Hammer",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/hammer.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/hammer_closed.png",
+        "position": {
+          "x": -53.5,
+          "y": 1.82,
+          "z": 51.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "hammer",
+          "mutant_hound_2"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_suiciders",
+      "name": "Suiciders",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+      "box":{
+        "kind": "tile",
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders.png",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/suiciders_closed.png",
+        "position": {
+          "x": -53.5,
+          "y": 1.82,
+          "z": 49.5
+        },
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+        "scale": {
+          "x": 1,
+          "y": 1,
+          "z": 1
+        },
+        "thickness": 0.3,
+        "locked": true
+      },
+      "contents": {
+        "models": [
+          "suicider",
+          "suicider",
+          "suicider_2"
+        ],
+        "cards": []
+      }
+    },
+
+    {
+      "id": "w1_behemoth",
+      "name": "Behemoth",
+      "wave": 1,
+      "productType": "miniatures",
+      "defaultOpen": false,
+
+      "box": {
+        "kind": "tile",
+
+        "imageOpen": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth.jpg",
+        "imageClosed": "https://raw.githubusercontent.com/GME-Tools/foww-tts/refs/heads/main/assets/wave1/behemoth_closed.jpg",
+
+        "position": {
+          "x": -53.5,
+          "y": 1.82,
+          "z": 44.5
+        },
+
+        "rotation": {
+          "x": 0,
+          "y": 180,
+          "z": 0
+        },
+
+        "scale": {
+          "x": 1,
+          "y": 1.0,
+          "z": 1
+        },
+
+        "thickness": 0.45,
+        "locked": true
+      },
+
+      "contents": {
+        "models": [
+          "behemoth"
+        ],
+        "cards": []
+      }
+    }
+  ]
+}
